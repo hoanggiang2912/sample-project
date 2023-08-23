@@ -1,0 +1,18 @@
+.user-social-form {
+    .body-text3 {
+        margin-top: 12px;
+    }
+    
+    .social__btn {
+        width: fit-content;
+        gap: 12px;
+        font-weight: $fw-smb;
+        font-size: clamp(1.2rem, 1.057rem + 0.381vw, 1.4rem);
+    }
+    .twitter__btn {
+        background: #1DA1F2;
+    }
+    .facebook__btn {
+        background: #1F7BF2;
+    } 
+}

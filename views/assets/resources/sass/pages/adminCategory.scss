@@ -1,0 +1,28 @@
+.admin__main {
+    overflow-x: auto;
+
+    .category__table {
+        th {
+            background: $common-gray-color;
+            color: $text-color;
+            font-weight: $fw-smb;
+            padding: 16px 24px;
+        }
+
+        td {
+            padding: 16px 24px;
+            text-align: center;
+            color: $text-color;
+            font-weight: $fw-md;
+            background: $common-color;
+
+            .edit__btn {
+                color: $primary-color;
+            }
+
+            .delete__btn {
+                color: $warning-color;
+            }
+        }
+    }
+}

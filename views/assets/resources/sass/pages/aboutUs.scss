@@ -1,0 +1,57 @@
+.about-us {
+    background: $common-color !important;
+    .about-us__container {
+        padding-block: clamp(2rem, -0.857rem + 7.619vw, 6rem);
+        .about-us__title {
+            text-align: left;
+            color: $default-label-color;
+        }
+        .about-us__main {
+            .about-us__section {
+                gap: clamp(3rem, -2rem + 13.333vw, 10rem);
+                padding-block: clamp(3rem, 0.857rem + 5.714vw, 6rem);
+                .section__title {
+                    font-size: clamp(2.2rem, 0.343rem + 4.952vw, 4.8rem);
+                    max-width: 75rem;
+                }
+                .body-text2 {
+                    max-width: 50rem;
+                    line-height: 2.2rem;
+                    display: block;
+                }
+                .guarentee-item__wrapper {
+                    max-width: 130rem;
+                    .guarentee__item {
+                        padding-block: clamp(3rem, 0.857rem + 5.714vw, 6rem);
+                        border-bottom: 1px solid $common-gray-color;
+                        .guarentee__title {
+                            color: $default-label-color !important;
+                        }
+                    }
+                }
+                .author__card {
+                    background: $default-label-color;
+                    padding-top: 10rem;
+                    .author-card__inner {
+                        position: relative;
+                        background: rgba($color: #fff, $alpha: .4);
+                        .author__avt {
+                            width: clamp(5rem, 2.857rem + 5.714vw, 8rem);
+                            aspect-ratio: 1;
+                            position: absolute;
+                            top: -15%;
+                        }
+                        .author__name {
+                            font-size: clamp(1.6rem, 1.029rem + 1.524vw, 2.4rem);
+                            color: $common-color;
+                        }
+                        .text {
+                            color: $common-color;
+                            max-width: 20rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

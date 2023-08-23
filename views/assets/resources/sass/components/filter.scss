@@ -1,0 +1,31 @@
+// filter styles start
+.toggle-filter {
+    border-radius: 6px;
+    transition: $boucing-trans;
+    position: relative;
+    .filter__list {
+        position: absolute;
+        z-index: 50;
+        top: 100%;
+        right: 0;
+        min-width: 30rem;
+        background: $common-color;
+        box-shadow: $box-shadow;
+        border-radius: .8rem;
+        .filter__item {
+            list-style-type: none;
+            .filter__link {
+                padding: 1.6rem;
+                transition: $boucing-trans;
+                &:hover {
+                    background: $common-hover-bg;
+                }
+            }
+        }
+    }
+    &:hover {
+        background: $common-hover-bg;
+    }
+}
+
+// filter styles end

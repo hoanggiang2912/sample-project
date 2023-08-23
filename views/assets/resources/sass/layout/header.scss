@@ -1,0 +1,224 @@
+.header {
+    width: $full;
+    height: 8rem;
+    padding-inline: clamp(1.5rem, -1.714rem + 8.571vw, 6rem);
+    background: $common-color;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 80;
+    transition: $common-trans;
+    .header__inner {
+        width: 100%;
+        height: 100%;
+        .header__nav {
+            .user__nav {
+                position: absolute;
+                width: max-content;
+                box-shadow: $box-shadow;
+                top: 8rem;
+                right: 0;
+                overflow: hidden;
+                opacity: 0;
+                visibility: hidden;
+                transition: $common-trans;
+                ul {
+                    background: $common-color;
+                    box-shadow: $box-shadow;
+                    transform: translateY(-100%);
+                    box-shadow: $box-shadow;
+                    transition: $boucing-trans;
+                    .nav__item {
+                        padding: 1.4rem 2rem;
+                        .nav__link {
+                            color: $text-color;
+                            text-transform: none;
+                            line-height: 3.2rem;
+                        }
+                        &:hover {
+                            background: $common-border-color;
+                        }
+                    }
+                }
+            }
+        }
+        .logo {
+            color: $text-color;
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+        }
+        .nav__item {
+            list-style-type: none;
+            transition: $common-trans;
+            .search__form__wrapper {
+                opacity: 0;
+                visibility: hidden;
+                overflow: hidden;
+                .search__form {
+                    position: absolute;
+                    top: 80px;
+                    right: 0;
+                    min-width: 300px;
+                    border-radius: 4px;
+                    background: $background-color;
+                    transform: translateY(-100%);
+                    transition: $boucing-trans;
+                    box-shadow: $box-shadow;
+                    .form__input {
+                        padding: 12px 20px;
+                    }
+                    .search__btn {
+                        padding-inline: 10px;
+                        transition: $common-trans;
+                        &:hover {
+                            background: rgba(0, 0, 0, 0.20);
+                        }
+                    }
+                }
+            }
+            &:hover .user__nav {
+                opacity: 1;
+                visibility: visible;
+                ul {
+                    transform: translateY(0);
+                }
+            }
+            .search__form__wrapper.active {
+                opacity: 1;
+                visibility: visible;
+                .search__form {
+                    transform: translateY(0);
+                }
+            }
+            .header__subnav {
+                position: absolute;
+                background: $common-color; 
+                top: 100%;
+                left: 0;
+                right: 0;
+                padding: 30px;
+                transition: $boucing-trans;
+                align-items: start;
+                opacity: 0;
+                visibility: hidden;
+                .nav__item {
+                    min-width: 300px;
+                    overflow: hidden;
+                    ul {
+                        transition: $common-trans;
+                        transform: translateY(20px);
+                        .nav__item {
+                            transition: $boucing-trans;
+                            &:hover {
+                                transform: translateX(1rem);
+                            }
+                        }
+                    }
+                    .sub-title {
+                        margin-bottom: 22px;
+                    }
+                    .nav__link {
+                        line-height: 36px;
+                        text-transform: none;
+                        padding: 0;
+                    }
+                }
+            }
+            .nav__link {
+                font-size: 1.6rem;
+                color: $text-color;
+                font-weight: $fw-md;
+                line-height: 80px;
+                text-decoration: none;
+                text-transform: uppercase;
+                padding-inline: 1.5rem; 
+                transition: $common-trans;
+                &:hover {
+                    color: $common-text-lighter-color;
+                }
+            }
+            &:hover > .header__subnav {
+                opacity: 1;
+                visibility: visible;
+                .nav__item {
+                    ul {
+                        transform: translateY(0);
+                    }
+                }
+            }
+        }
+        .open__btn {
+            display: none;
+            font-size: 1.6rem;
+        }
+    }
+}
+.home-page.header {
+    background: none;
+    .logo {
+        color: $common-color;
+    }
+    .header__nav {
+        .nav__link {
+            color: $common-color;
+        }
+        .header__subnav {
+            .nav__link {
+                color: $text-color !important;
+            }
+        }
+    }
+    .open__btn {
+        color: $common-color !important;
+    }
+}
+.header.scrolled {
+    background: $common-overlay;
+}
+.search__form {
+    display: flex;
+    .form__input {
+        flex-grow: 1;
+        border: none;
+        outline: none;
+        padding: 0;
+    }
+}
+.respon__nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 60%;
+    background: $common-color;
+    z-index: 100;
+    opacity: 0;
+    transition: $boucing-trans;
+    transform: translateX(100%);
+    .nav__item {
+        padding: 20px;
+        border-bottom: 1px solid $common-border-color;
+        .nav__link {
+            display: block;
+            transition: $common-trans;
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+    }
+}
+.respon__overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(36, 35, 32, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 90;
+    opacity: 0;
+    visibility: hidden;
+}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Orders</title>
+    <link rel="stylesheet" href="/app/resources/sass/css/app.css">
+    <link rel="icon" type="image/x-icon" href="/app/views/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="theme-light">
+    <div class="container-full admin__container flex">
+        <div class="admin__sidebar flex-column g30 p30">
+            <a href="index.php" class="logo flex-center">
+                <img src="/app/views/assets/images/logo.svg" alt=""><span class="logo__text">typistial</span>
+            </a>
+            <nav class="admin-sidebar__nav">
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fa-solid fa-chart-simple sidebar-nav__icon"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fa-solid fa-envelope sidebar-nav__icon"></i>
+                        Messages
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-archive sidebar-nav__icon"></i>
+                        Orders
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-box sidebar-nav__icon"></i>
+                        Products
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-user sidebar-nav__icon"></i>
+                        Customers
+                    </a>
+                </li>
+            </nav>
+            <nav class="admin-sidebar__nav">
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-user-edit sidebar-nav__icon"></i>
+                        Roles
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-repeat sidebar-nav__icon"></i>
+                        Requests
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fa-solid fa-gear sidebar-nav__icon"></i>
+                        Setting
+                    </a>
+                </li>
+            </nav>
+        </div>
+        <main class="admin__panel p20 flex-column flex-full g20">
+            <div class="admin__header full v-center flex-between">
+                <div class="header__icon sidebar__toggle p12 flex-center text r6 cp">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <div class="header__searchbar">
+                    <form action="index.php?page=search" method="post" class="flex-full search__form oh">
+                        <input type="text" class="form__input" placeholder="Orders, customers, products...">
+                        <button type="submit" name="search" class="form__btn search__btn pi20">
+                            <i class="fa-solid fa-search text"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="flex g12 por">
+                    <a class="header__icon text p20 flex-center rf">
+                        <i class="fa-solid fa-bell"></i>
+                    </a>
+                    <a class="header__icon rf admin__avt toggle-admin-subnav common-banner">
+                        <img src="/app/views/assets/images/user__avt.png" alt="">
+                    </a>
+                    <ul class="admin__subnav r12 poa oh">
+                        <li class="subnav__item">
+                            <a href="" class="nav__link flex g12">
+                                <div class="admin__avt">
+                                    <img src="/app/views/assets/images/user__avt.png" alt="">
+                                </div>
+                                <div class="flex-column">
+                                    <h2 class="body-text2 md admin__name">Hồ Duy Hoàng Giang</h2>
+                                    <h2 class="label md admin__role">Admin</h2>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="subnav__item flex flex-between">
+                            <form action="" class="search__form">
+                                <input type="text" class="form__input" placeholder="Search...">
+                                <button type="submit" name="search"><i class="fas fa-search text"></i></button>
+                            </form>
+                        </li>
+                        <li class="subnav__item">
+                            <a href="" class="nav__link flex-between">
+                                Messages
+                                <span class="noti rf flex-center smb">5+</span>
+                            </a>
+                        </li>
+                        <li class="subnav__item">
+                            <a href="" class="nav__link flex-between">
+                                Schedule
+                                <!-- <span class="noti rf flex-center smb">5+</span> -->
+                            </a>
+                        </li>
+                        <li class="subnav__item">
+                            <a href="" class="nav__link flex-between">
+                                Your plans
+                                <!-- <span class="noti rf flex-center smb">5+</span> -->
+                            </a>
+                        </li>
+                        <li class="subnav__item">
+                            <a href="" class="nav__link flex-between">
+                                Reminder
+                                <!-- <span class="noti rf flex-center smb">5+</span> -->
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="admin__main row g12">
+                <div class="order-box__wrapper flex-full flex-between flex-column g12">            
+                    <div class="admin__box admin__box--order p20 r12 oh g30 flex-column flex-full">
+                        <div class="admin__box--label primary-masking-text md">Complete</div>
+                        <div class="admin__box--text admin__box--hightlight-text text">55 <span class="label smb">orders</span></div>
+                        <div class="label"><i class="fa-solid fa-arrow-trend-up admin__box--icon"></i> 5% vs last month</div>
+                    </div>
+                    <div class="admin__box admin__box--order p20 r12 oh g30 flex-column flex-full">
+                        <div class="admin__box--label label primary-text">Delivering</div>
+                        <div class="admin__box--text admin__box--hightlight-text text">128 <span class="label smb">orders</span></div>
+                        <div class="label"><i class="fa-solid fa-arrow-trend-up admin__box--icon"></i> 5% vs last month</div>
+                    </div>
+                    <div class="admin__box admin__box--order p20 r12 oh g30 flex-column flex-full">
+                        <div class="admin__box--label label accent-text"> Return / refund</div>
+                        <div class="admin__box--text admin__box--hightlight-text text">8 <span class="label smb">orders</span></div>
+                        <div class="label"><i class="fa-solid fa-arrow-trend-down admin__box--icon alert-text"></i> 5% vs last week</div>
+                    </div>
+                    <div class="admin__box admin__box--order p20 r12 oh g30 flex-column flex-full">
+                        <div class="admin__box--label label alert-text"> Cancelled </div>
+                        <div class="admin__box--text admin__box--hightlight-text text">12 <span class="label smb">orders</span></div>
+                        <div class="label"><i class="fa-solid fa-arrow-trend-down admin__box--icon alert-text"></i> 5% vs last month</div>
+                    </div>
+                </div>
+                <div class="admin__box admin__box--order flex-column g30 flex-full p20 r12">
+                    <div class="flex-between v-center">
+                        <h4 class="heading-4 admin__box--title">All orders</h4>
+                        <div class="filter order-filter toggle-filter flex text v-center smb g6 cp p10">
+                            <i class="far fa-filter"></i>
+                            Filter
+                            <ul class="filter__list">
+                                <li class="filter__item">
+                                    <a href="" class="filter__link flex-between v-center">
+                                        <div class="flex g6 v-center">
+                                            <img src="/app/views/assets/images/completed-icon.svg" alt="">
+                                            <div class="filter__name smb">Complete orders</div>
+                                        </div>
+                                        <div class="filter__sublabel label">55</div>
+                                    </a>
+                                </li>
+                                <li class="filter__item">
+                                    <a href="" class="filter__link flex-between v-center">
+                                        <div class="flex g6 v-center">
+                                            <img src="/app/views/assets/images/delivering-icon.svg" alt="">
+                                            <div class="filter__name smb">Delivering orders</div>
+                                        </div>
+                                        <div class="filter__sublabel label">55</div>
+                                    </a>
+                                </li>
+                                <li class="filter__item">
+                                    <a href="" class="filter__link flex-between v-center">
+                                        <div class="flex g6 v-center">
+                                            <img src="/app/views/assets/images/return-icon.svg" alt="">
+                                            <div class="filter__name smb">Return orders</div>
+                                        </div>
+                                        <div class="filter__sublabel label">55</div>
+                                    </a>
+                                </li>
+                                <li class="filter__item">
+                                    <a href="" class="filter__link flex-between v-center">
+                                        <div class="flex g6 v-center">
+                                            <img src="/app/views/assets/images/cancelled-icon.svg" alt="">
+                                            <div class="filter__name smb">Cancelled orders</div>
+                                        </div>
+                                        <div class="filter__sublabel label">55</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex-column g20 order__wrapper">
+                        <!-- single order item start -->
+                        <div class="order__item row g20 flex-between flex-full">
+                            <div class="flex g12">
+                                <img src="/app/views/assets/images/completed-icon.svg" alt="" class="order__banner">
+                                <div class="flex-column flex-between">
+                                    <h4 class="order__name text smb">AKKO 5075B Cyan & Black</h4>
+                                    <span class="label">July 21th 2023 - 09:45</span>
+                                </div>
+                            </div>
+                            <div class="flex-column flex-between end">
+                                <span class="order__status primary-masking-text">Complete</span>
+                                <span class="label">SDF13HFDF943</span>
+                            </div>
+                        </div>
+                        <!-- single order item end -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+<script src="/app/resources/js/main.js"></script>

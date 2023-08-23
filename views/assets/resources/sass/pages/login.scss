@@ -1,0 +1,65 @@
+.form__section {
+    position: relative;
+    z-index: 1;
+    padding-top: clamp(4rem, -0.286rem + 11.429vw, 10rem);
+    padding-bottom: 6rem;
+    .form__wrapper {
+        .form {
+            padding: 20px;
+            width: clamp(30rem, 15.714rem + 38.095vw, 50rem);
+            width: fit-content;
+            background: $common-color;
+            box-shadow: $box-shadow;
+            .form__group {
+                position: relative;
+                .form__label {
+                    position: absolute;
+                    top: 2.4rem;
+                    left: 2rem;
+                }
+                .form__input {
+                    width: 100%;
+                    border-color: transparent;
+                    border-bottom-color: $primary-color;
+                    background: none;
+                    &:hover,
+                    &:focus {
+                        border-color: $primary-color;
+                    }
+                }
+            }
+            .forgot-password {
+                position: relative;
+                &::before {
+                    content:'';
+                    position: absolute;
+                    width: clamp(5rem, 1.429rem + 9.524vw, 10rem);
+                    height: .1rem;
+                    background: $break-line-color;
+                    top: 50%;
+                    left: 105%;
+                }
+                &::after {
+                    content:'';
+                    position: absolute;
+                    width: clamp(5rem, 1.429rem + 9.524vw, 10rem);
+                    height: .1rem;
+                    background: $break-line-color;
+                    top: 50%;
+                    right: 105%;
+                }
+            }
+            .form__group>input:not(:placeholder-shown)+label,
+            .form__group>input:focus+label {
+                top: -1rem;
+                left: 1rem;
+                color: $primary-color;
+                padding-inline: 1rem;
+                background: $common-color;
+            }
+            .smb {
+                font-size: clamp(1.2rem, 0.914rem + 0.762vw, 1.6rem);
+            }
+        }
+    }
+}

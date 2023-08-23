@@ -1,0 +1,103 @@
+.admin__header {
+    // gap: 3rem !important;
+    .header__icon {
+        background: $common-color;
+        box-shadow: $box-shadow;
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+    .header__searchbar {
+        max-width: 60rem;
+        flex-grow: 1;
+        .search__form {
+            box-shadow: $box-shadow;
+            background: $common-color;
+            border-radius: 50px;
+            .form__input {
+                padding-block: 1.4rem;
+                background: none;
+                justify-content: space-between;
+                align-items: center;
+                transition: $boucing-trans;
+                &:hover, 
+                &:focus {
+                    background: none;
+                    border: none;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+    .admin__subnav {
+        min-width: 30rem;
+        background: $common-color;
+        box-shadow: $box-shadow;
+        right: 0;
+        top: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transition: $boucing-trans;
+        .subnav__item {
+            transition: $boucing-trans;
+            transform: translateY(1rem);
+            .nav__link {
+                padding: 1.6rem 2rem;
+                .noti {
+                    width: 20px;
+                    height: 20px;
+                    background: $warning-color;
+                    color: $common-color;
+                    font-size: 1.2rem;
+                }
+                &:hover {
+                    background: $common-hover-bg;
+                }
+            }
+            .search__form {
+                padding: 1.6rem 2rem;
+            }
+            .form__input {
+                background: none;
+                border: none;
+                padding: 0;
+                &:hover,
+                &:focus {
+                    background: none;
+                    border: none;
+                    box-shadow: none;
+                }
+            }
+        }
+        .admin__avt {
+            width: 4.5rem;
+            height: 4.5rem;
+        }
+    }
+    .admin__subnav.active {
+        opacity: 1;
+        visibility: visible;
+        .subnav__item {
+            transform: translateY(0);
+        }
+    }
+}
+
+// || Responsive 
+/* Mobile: with < 740px */
+@media only screen and (max-width: 46.1875em){
+    
+}
+/* Tablet: width >= 740px and width < 1024px */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
+    
+}
+/* Mobile and Tablet: width < 1024px */
+@media only screen and (max-width: 63.9375em){
+    .header__searchbar {
+        display: none !important;
+    }
+}
+/* PC: width >= 1024px */
+@media only screen and (min-width: 64em){
+
+}

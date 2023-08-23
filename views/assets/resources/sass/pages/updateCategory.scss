@@ -1,0 +1,19 @@
+.update-category__form {
+    td {
+        .form__input {
+            background: none;
+            border: none;
+            outline: none;
+            color: $text-color;
+            padding: 0;
+            width: 100%;
+    
+            &:hover,
+            &:focus {
+                background: none !important;
+                border: none !important;
+                box-shadow: none !important;
+            }
+        }
+    }
+}

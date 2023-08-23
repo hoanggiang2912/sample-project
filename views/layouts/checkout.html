@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="/app/resources/sass/css/app.css">
+    <link rel="icon" type="image/x-icon" href="/app/views/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="theme-light">
+    <div class="container-full">
+
+        <!-- || header start -->
+        <header class="header"> 
+            <div class="header__inner flex-between">
+                <a href="index.php" class="logo flex-center">
+                    <img src="/app/views/assets/images/logo.svg" alt=""><span>typistial</span>
+                </a>
+                <nav>
+                    <ul class="h-nav header__nav">
+                        <li class="nav__item"><a href="" class="nav__link">Trang chủ</a></li>
+                        <li class="nav__item">
+                            <a href="" class="nav__link toggle-subnav">Sản phẩm</a>
+                            <ul class="header__subnav flex-between">
+                                <li class="nav__item">
+                                    <a href="" class="sub-title nav__link">CATEGORIES</a>
+                                    <ul>
+                                        <li class="nav__item"><a class="nav__link" href="">IN STOCK</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">KEYBOARDS</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">KITS</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="/html/switches.html">SWITCHES</a>
+                                        </li>
+                                        <li class="nav__item"><a class="nav__link" href="/html/keycaps.html">KEYCAPS</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav__item">
+                                    <a href="/html/keycaps.html" class="nav__link sub-title">KEYCAPS</a>
+                                    <ul>
+                                        <li class="nav__item"><a class="nav__link" href="">GMK DUALSHOT® 2 Keycaps</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">OTC Modo® Light Keycaps</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">GMK Norse Keycap Set</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">GMK 8008 2 Keycap Set</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">OTC 9009 Keycaps</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav__item">
+                                    <a href="/html/kits.html" class="nav__link sub-title">KITS</a>
+                                    <ul>
+                                        <li class="nav__item"><a class="nav__link" href="">SPR 67 Kit</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">ACR TOP 75 Kit</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">5075S Kit</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">ACR Pro Alice Plus Kit</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">ACR Pro 75 Kit</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav__item">
+                                    <a href="/html/switches.html" class="nav__link sub-title">SWITCHES</a>
+                                    <ul>
+                                        <li class="nav__item"><a class="nav__link" href="/html/milky-pro.html">Gateron KS-3
+                                                Milky Pro Switch Set</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">Gateron Ink V2 Switch Set</a>
+                                        </li>
+                                        <li class="nav__item"><a class="nav__link" href="">Gateron Cap V2 Switch Set</a>
+                                        </li>
+                                        <li class="nav__item"><a class="nav__link" href="">Gateron Box CJ Linear Switch
+                                                Set</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">Gateron Box Ink V2 Switch Set</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav__item">
+                                    <a href="/html/pre-built.html" class="nav__link sub-title">PRE-BUILT
+                                        KEYBOARDS</a>
+                                    <ul>
+                                        <li class="nav__item"><a class="nav__link" href="">IQUNIX OG80 Wormhole Wireless</a>
+                                        </li>
+                                        <li class="nav__item"><a class="nav__link" href="">IQUNIX L80 Formula Typing
+                                                Wireless</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">Keychron Q8 (Alice Layout)
+                                                QMK</a></li>
+                                        <li class="nav__item"><a class="nav__link" href="">AKKO Black&Cyan 5075B Plus</a>
+                                        </li>
+                                        <li class="nav__item"><a class="nav__link" href="">AKKO Dracula Castle 5075B
+                                                Plus</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav__item"><a href="" class="nav__link">Hổ trợ</a></li>
+                        <li class="nav__item"><a href="" class="nav__link">Về chúng tôi</a></li>
+                    </ul>
+                </nav>
+                <nav>
+                    <ul class="h-nav header__nav icon__nav">
+                        <li class="nav__item" style="position: relative">
+                            <a href="" class="nav__link">
+                                <i class="fal fa-user"></i>
+                            </a>
+                            <nav class="user__nav r4">
+                                <ul>
+                                    <li class="nav__item">
+                                        <a href="" class="nav__link">
+                                            <i class="fal fa-sign-in"></i> Login
+                                        </a>
+                                    </li>
+                                    <li class="nav__item">
+                                        <a href="" class="nav__link">
+                                            <i class="fal fa-user-plus"></i> Create account
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </li>
+                        <li class="nav__item" style="position: relative">
+                            <a href="" class="nav__link">
+                                <i class="fal fa-search toggle-searchbar"></i>
+                            </a>
+                            <div class="search__form__wrapper">
+                                <form action="" class="search__form">
+                                    <div class="form__group">
+                                        <input type="text" class="form__input" placeholder="Tên sản phẩm...">
+                                    </div>
+                                    <button type="submit" class="search__btn" name="searchSubmit"><i class="fal fa-search"></i></button>
+                                </form>
+                            </div>
+                        </li>
+                        <li class="nav__item"><a href="" class="nav__link"><i class="fal fa-shopping-cart"></i></a></li>
+                    </ul>
+                </nav>
+                <i class="fal fa-bars open__btn" style="line-height: 80px;"></i>
+            </div>
+        </header>
+        <nav class="respon__nav">
+            <ul>
+                <li class="flex-between nav__item">
+                    <div class="nav__link"><i class="fal fa-user"></i></div>
+                    <i class="fal fa-times close__btn"></i>
+                </li>
+                <li class="nav__item">
+                    <form action="" method="post" class="search__form">
+                        <input type="text" class="form__input search__input" placeholder="Search...">
+                        <button class="submit" name="searchSubmit"><i class="fal fa-search"></i></button>
+                    </form>
+                </li>
+                <li class="nav__item"><a href="" class="nav__link">Home</a></li>
+                <li class="nav__item"><a href="" class="nav__link">Keyboards</a></li>
+                <li class="nav__item"><a href="" class="nav__link">Keycaps</a></li>
+                <li class="nav__item"><a href="" class="nav__link">Switches</a></li>
+                <li class="nav__item"><a href="" class="nav__link">Kits</a></li>
+                <li class="nav__item"><a href="" class="nav__link">Deskpads</a></li>
+            </ul>
+        </nav>
+        <div class="respon__overlay"></div>
+        <!-- header end -->
+
+        <section class="section checkout-main__section">
+            
+            <!-- cart nav start -->
+            <nav>
+                <ul class="row r12 cart__nav v-center">
+                    <div class="toggle-dropdown flex-center g6" style="display: none;"><i class="fa-solid fa-sliders"></i> Giỏ hàng</div>
+                    <li class="nav__item active"><i class="fa-solid fa-box"></i><a href="/html/cart.html" class="nav__link">Giỏ hàng</a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="nav__item"><i class="fa-solid fa-wallet"></i><a href="/html/checkout.html" class="nav__link">Thanh toán</a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa-solid fa-chevron-right"></i></a></li>
+                    <li class="nav__item">
+                        <i class="fa-solid fa-credit-card"></i><a href="/html/payment.html" class="nav__link">Phương thức thanh toán</a>
+                    </li>
+                </ul>
+                <ul class="cart__nav cart-nav__respon flex-column g20 r12 mt6">
+                    <li class="nav__item active"><i class="fa-solid fa-box"></i><a href="/html/cart.html" class="nav__link">Giỏ hàng</a></li>
+                    <li class="nav__item"><i class="fa-solid fa-wallet"></i><a href="/html/checkout.html" class="nav__link">Thanh toán</a></li>
+                    <li class="nav__item">
+                        <i class="fa-solid fa-credit-card"></i><a href="/html/payment.html" class="nav__link">Phương thức thanh toán</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- cart nav end -->
+
+            <form action="" class="bill-info__form checkout__form full row mt20">
+                <main class="bill-info__body checkout-main__body r12 p20 flex-column flex-full g20">
+                    <div class="form__group">
+                        <label for="" class="form__label">Chọn quốc gia</label>
+                        <select name="country" id="" class="form__input">
+                            <option value="1" selected>VietNam</option>
+                            <option value="2">USA</option>
+                            <option value="3">England</option>
+                        </select>
+                        <span class="form__message"></span>
+                    </div>
+                    <hr class="break-line">
+                    <label class="form__label">Địa chỉ giao dịch</label>
+                    <div class="form__group">
+                        <label for="" class="form__label">
+                            Địa chỉ <span class="required">*</span>
+                        </label>
+                        <input type="text" name="address" class="form__input">
+                        <span class="form__message"></span>
+                    </div>
+                    <div class="form__group">
+                        <label for="" class="form__label">Email <span class="required">*</span></label>
+                        <input type="text" class="form__input">
+                        <span class="form__message"></span>
+                    </div>
+                    <div class="form__group">
+                        <label for="" class="form__label">Số điện thoại <span class="required">*</span></label>
+                        <input type="text" class="form__input" name="phone">
+                        <span class="form__message"></span>
+                    </div>
+                    <div class="form__group">
+                        <label for="" class="form__label">Nhập tên đường và số nhà <span class="required">*</span></label>
+                        <input type="text" class="form__input" name="subAddress">
+                        <span class="form__message"></span>
+                    </div>
+                    <div class="flex-between row g12">
+                        <div class="form__group flex-full">
+                            <label for="" class="form__label">
+                                Chọn thành phố / tỉnh <span class="required">*</span>
+                            </label>
+                            <select name="city" id="" class="form__input">
+                                <option value="1" selected>TP.HCM</option>
+                                <option value="2">Hà Nội</option>
+                                <option value="3">Cần Thơ</option>
+                                <option value="4">Đà Nẵng</option>
+                            </select>
+                            <span class="form__message"></span>
+                        </div>
+                        <div class="form__group flex-full">
+                            <label for="" class="form__label">Chọn thành quận / huyện <span class="required">*</span></label>
+                            <select name="" id="" class="form__input">
+                                <option value="1"select>Tân Bình</option>
+                                <option value=""></option>
+                                <option value=""></option>
+                                <option value=""></option>
+                            </select>
+                            <span class="form__message"></span>
+                        </div>
+                    </div>
+                    <hr class="break-line">
+                    <div class="shipping__options r8 flex-column g12">
+                        <label for="" class="form__label">Phương thức vận chuyển <span class="required">*</span></label>
+                        <label for="free" class="shipping__option flex-between">
+                            <div class="row g12">
+                                <i class="fa-regular fa-circle option__btn"></i>
+                                <i class="fa-regular fa-circle-check option__btn"></i>
+                                <div>
+                                    <h5 class="option__name">Miễn phí</h5>
+                                    <p>7 - 30 ngày (tùy quốc gia)</p>
+                                </div>
+                            </div>
+                            <p class="shipping__price">$0</p>
+                        </label>
+                        <label for="standard" class="shipping__option flex-between active">
+                            <div class="row g12">
+                                <i class="fa-regular fa-circle-check option__btn"></i>
+                                <i class="fa-regular fa-circle option__btn"></i>
+                                <div>
+                                    <h5 class="option__name">Thông thường</h5>
+                                    <p>3 - 14 ngày (tùy quốc gia)</p>
+                                </div>
+                            </div>
+                            <p class="shipping__price">$11</p>
+                        </label>
+                        <label for="fast" class="shipping__option flex-between">
+                            <div class="row g12">
+                                <i class="fa-regular fa-circle option__btn"></i>
+                                <i class="fa-regular fa-circle-check option__btn"></i>
+                                <div>
+                                    <h5 class="option__name">Hỏa tốc</h5>
+                                    <p>1 - 3 ngày (tùy quốc gia)</p>
+                                </div>
+                            </div>
+                            <p class="shipping__price">$19</p>
+                        </label>
+                        <input type="hidden" id="free" name="free" value="1">
+                        <input type="hidden" id="standard" name="standard" value="2">
+                        <input type="hidden" id="fast" name="fast" value="3">
+                    </div> 
+                </main>
+                <div class="cart-summary flex-full">
+                    <div class="cart-summary__inner flex-column g20 p20 r8 flex-full">
+                        <div class="cart-summary__product flex-between flex-full">
+                            <div class="flex g6">
+                                <div class="common-banner product__banner" style="background-image: url('/app/views/assets/images/banner4.webp')"></div>
+                                <h4 class="product__name body-text2">Gateron KS-3 Milky Pro</h4>
+                            </div>
+                            <div class="flex-column flex-between end">
+                                <h4 class="product__subtotal">$165.00</h4>
+                                <h4 class="product__qty">x1</h4>
+                            </div>
+                        </div>
+                        <div class="toggle-detail underline">Xem chi tiết</div>
+                        <div class="cart-summary__detail flex-column g20">
+                            <div class="product__voucher form__group">
+                                <label for="" class="form__label">Nhập mã giảm giá để nhận ưu đãi</label>
+                                <div class="flex-between row g6 mt12">
+                                    <input type="text" class="form__input flex-full" placeholder="Mã giảm giá">
+                                    <span class="form__message"></span>
+                                    <button class="btn outline__btn apply__btn">Áp dụng</button>
+                                </div>
+                            </div>
+                            <div class="flex-between">
+                                <span class="smb text">Tiền sản phẩm</span>
+                                <span class="smb text product__price">$165.00</span>
+                            </div>
+                            <div class="flex-between">
+                                <span class="smb text">Giảm giá</span>
+                                <span class="smb text sale">-$0</span>
+                            </div>
+                            <div class="flex-between">
+                                <span class="smb text">Phí vận chuyển</span>
+                                <span class="smb text shipping-fee">$11</span>
+                            </div>
+                        </div>
+                        <hr class="break-line">
+                        <div class="flex-between">
+                            <span class="smb body-text1">Tổng tiền</span>
+                            <span class="smb body-text1 total">$11</span>
+                        </div>
+                        <button type="submit" class="btn primary__btn">Đi đến thanh toán</button>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>
+<script src="/app/resources/js/main.js"></script>

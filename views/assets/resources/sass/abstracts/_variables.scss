@@ -1,0 +1,117 @@
+// || color variables
+$banner-btn-bg: rgba(255, 255, 255, 0.4);
+$banner-btn-text-color: #ffffff;
+$common-border-color: #dddddd;
+$common-border-dark-color: #bbbbbb;
+$common-border-light-color: #d9d9d9;
+$common-gray-color: #dbe4e9;
+$common-primary-20p: rgba( 0 , 195 , 255 , .2);
+$common-primary-40p: rgba( 0 , 195 , 255 , .4);
+$common-text-color: #333333;
+$common-text-light-color: #666666;
+$common-text-lighter-color: #999999;
+$common-white-20p: #ffffff;
+$dark-accent-color: #ffa500;
+$dark-active-label-color: #f3f4f6;
+$dark-background-color: #181818;
+$dark-common-color: #1e1e1e;
+$dark-default-label-color: #8d8d8d;
+$dark-hover-label-color: #e5e7eb;
+$dark-input-bg-color: #555555;
+$dark-input-border-color: #666666;
+$dark-input-label-color: #cccccc;
+$dark-input-text-color: #ffffff;
+$dark-ouline-btn-border-color: #a5a5a5;
+$dark-outline-btn-border-color: #ffffff;
+$dark-outline-btn-text-color: #a5a5a5;
+$dark-outline-btn-text-color: #ffffff;
+$dark-pending-color: #008080;
+$dark-placeholder-text-color: #cccccc;
+$dark-primary-color: #00a6da;
+$dark-secondary-color: #e67e22;
+$dark-success-color: #52ff52;
+$dark-text-color: #ffffff;
+$dark-waiting-color: #808080;
+$dark-warning-color: #ff5f5f;
+$accent-color: #ffc107;
+$active-label-color: #1f2937;
+$alert-btn-bg: #dd3232;
+$alert-btn-hover-bg: #ff8080;
+$background-color: #f5f5f5;
+$common-color: #ffffff;
+$default-label-color: #6b7280;
+$hover-label-color: #4b5563;
+$input-bg-color: #f5f5f5;
+$input-border-color: #ced4da;
+$input-label-color: #495057;
+$input-text-color: #333333;
+$outline-btn-border-color: #333333;
+$outline-btn-hover-border-color: #666666;
+$outline-btn-hover-text-color: #666666;
+$outline-btn-text-color: #333333;
+$pending-color: #17a2b8;
+$placeholder-text-color: #999999;
+$primary-btn-bg: #00c2ff;
+$primary-btn-hover-bg: #5ed9ff;
+$primary-color: #00c2ff;
+$secondary-color: #ff9900;
+$success-color: #4fc169;
+$text-color: #333333;
+$waiting-color: #6c757d;
+$warning-color: #dd3232;
+$primary-linear-color: linear-gradient(333deg, #0054f6 0%, #3fbaff 100%);
+$product-btn-primary-background: rgba(100, 100, 100, 0.8);
+$product-btn-primary-hover-background: #212121;
+$product-btn-secondary-background: #000000;
+$product-btn-secondary-hover-background: #000000;
+$common-hover-bg: #d4d4d4;
+$break-line-color: #e1e1e1;
+
+
+// || Typography variables
+$main-font: 'Montserrat', sans-serif;
+$common-bodytext1: 2rem;
+$common-bodytext2: 1.6rem;
+$common-bodytext3: 1.3rem;
+$common-label: 1.6rem;
+$common-subtitle: 2rem;
+$desktop-heading1: 4.8rem;
+$desktop-heading2: 4rem;
+$desktop-heading3: 3.2rem;
+$desktop-heading4: 2.5rem;
+$mobile-heading1: 4.0rem;
+$mobile-heading2: 3.2rem;
+$mobile-heading3: 2.5rem;
+$mobile-heading4: 2rem;
+$fw-rg: 400;
+$fw-md: 500;
+$fw-smb: 600;
+$fw-b: 700;
+
+// || layout variables
+// border radius
+$r6: 0.6rem;
+$r100: 100%;
+// box shadow
+$box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.20);
+$hover-box-shadow: 0px 6px 20px -10px rgba(0, 0, 0, 0.20);
+$dark-box-shadow: 0px 0px 8px 0px rgba(255, 255, 255, 0.20);
+$dark-hover-box-shadow: 0px 6px 20px -10px rgba(255, 255, 255, 0.20);
+// container width
+$full: 100%;
+// spacing
+$section-pi: 60px;
+$section-pb: 30px;
+$gap6: 6px;
+$gap8: 8px;
+$gap12: 12px;
+$gap18: 18px;
+$gap22: 22px;
+$gap30: 30px;
+$gap60: 60px;
+// transition
+$common-trans: .2s linear;
+$boucing-trans: .25s cubic-bezier(0.19, 1, 0.22, 1);
+// overlay
+$common-overlay: rgba( 0 , 0 , 0 , .6 );
+

@@ -1,0 +1,135 @@
+.all-product__section {
+    .product-main__wrapper {
+        position: relative;
+        z-index: 10;
+        .main__inner {
+            padding: 30px 20px;
+            background: $common-color;
+            box-shadow: $box-shadow;
+            .filter__nav {
+                justify-content: end;
+                flex-grow: 1;
+                .product__filter {
+                    .filter__label {
+                        font-weight: $fw-md;
+                        color: $text-color;
+                    }
+                }
+            }
+            .product__section {
+                .product__sidebar {
+                    width: 280px;
+                    // flex: 1 0 0;
+                    align-items: flex-start;
+                    align-self: stretch;
+                    .sidebar-nav__title {
+                        margin-bottom: 12px;
+                    }
+                    .product-sidebar__nav {
+                        width: 100%;
+                        .nav__item {
+                            padding-block: 18px;
+                            display: flex;
+                            justify-content: space-between;
+                            &:hover > .nav__link{
+                                transform: translateX(10px);
+                            }
+                        }
+                    }
+                
+                    .sidebar__banner {
+                        position: relative;
+                        width: 100%;
+                        height: 54.5rem;
+                        background: url('/app/views/assets/images/banner6.webp') no-repeat center / cover;
+                        .text__center {
+                            text-align: left;
+                            width: min-content !important;
+                            .text-center__spotlight {
+                                font-size: clamp(2rem, 0.429rem + 4.19vw, 4.2rem);
+                            }
+                            .banner__btn {
+                                padding-inline: 0;
+                                width: 100%;
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+                .product__wrapper {
+                    max-width: calc(100% - 2rem - 28rem);
+                    align-content: flex-start;
+                    gap: 0 !important;
+                    .product {
+                        .product__inner {
+                            height: fit-content;
+                            box-shadow: $box-shadow;
+                            overflow: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dropdown-select {
+    position: relative;
+    .toggle__select {
+        box-shadow: $box-shadow;
+    }
+    .select-option__list {
+        position: absolute;
+        top: 4.8rem;
+        left: 0;
+        background: $common-color;
+        box-shadow: $box-shadow;
+        z-index: 50;
+    }
+    .select__option {
+        width: 28rem;
+        padding: 1.6rem 2rem;
+        border-radius: .4rem;
+        justify-content: space-between;
+        align-items: center;
+        background: $input-bg-color;
+        transition: $boucing-trans;
+        color: $input-text-color;
+        text-decoration: none;
+        list-style-type: none;
+        &:hover {
+            background: $common-hover-bg;
+        }
+    }
+    .selected {
+        background: $common-hover-bg;
+    }
+}
+
+// || Responsive 
+/* Mobile: with < 740px */
+@media only screen and (max-width: 46.1875em){
+    
+}
+/* Tablet: width >= 740px and width < 1024px */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
+    
+}
+/* Mobile and Tablet: width < 1024px */
+@media only screen and (max-width: 63.9375em){
+    .product__section  {
+        flex-direction: column-reverse;
+        .product__sidebar {
+            width: 100% !important;
+        }
+        .product__wrapper {
+            max-width: unset !important;
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}
+/* PC: width >= 1024px */
+@media only screen and (min-width: 64em){
+
+}

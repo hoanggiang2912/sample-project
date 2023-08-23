@@ -1,0 +1,30 @@
+.customer__item {
+    .customer__avt {
+        width: 5rem;
+        height: 5rem;
+    }
+    .customer-detail__nav {
+        overflow: hidden;
+        min-width: 28rem;
+        top: 50%;
+        right: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: $boucing-trans;
+        .nav__item {
+            transform: translateY(1.2rem);
+            padding: 1.6rem 2rem;
+            &:hover {
+                background: $common-hover-bg;
+            }
+        }
+    }
+    .customer-detail__nav.active {
+        opacity: 1;
+        visibility: visible;
+        .nav__item {
+            transform: translateY(0);
+        }
+    }
+}
+

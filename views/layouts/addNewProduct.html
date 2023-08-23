@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Add new product</title>
+    <link rel="stylesheet" href="/app/resources/sass/css/app.css">
+    <link rel="icon" type="image/x-icon" href="/app/views/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="theme-light">
+    <div class="container-full admin__container flex">
+        <div class="admin__sidebar flex-column g30 p30">
+            <a href="index.php" class="logo flex-center">
+                <img src="/app/views/assets/images/logo.svg" alt=""><span class="logo__text">typistial</span>
+            </a>
+            <nav class="admin-sidebar__nav">
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fa-solid fa-chart-simple sidebar-nav__icon"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fa-solid fa-envelope sidebar-nav__icon"></i>
+                        Messages
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-archive sidebar-nav__icon"></i>
+                        Orders
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-box sidebar-nav__icon"></i>
+                        Products
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-user sidebar-nav__icon"></i>
+                        Customers
+                    </a>
+                </li>
+            </nav>
+            <nav class="admin-sidebar__nav">
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-user-edit sidebar-nav__icon"></i>
+                        Roles
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-repeat sidebar-nav__icon"></i>
+                        Requests
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fa-solid fa-gear sidebar-nav__icon"></i>
+                        Setting
+                    </a>
+                </li>
+            </nav>
+        </div>
+        <main class="admin__panel p20 flex-column flex-full g20">
+            <div class="admin__box add-product__bar flex-between v-center common-box p20 r12">
+                <h4 class="heading-4 admin__box--title">Add new product</h4>
+                <a href="" class="p20 flex-center add-product__btn r8">
+                    <i class="fal fa-plus" style="font-size: 2rem;"></i>
+                </a>
+            </div>
+            <div class="admin-form__wrapper">
+                <form action="" method="post" class="form admin__form add-product__form flex-column g20 p20 r12 common-box">
+                    <div class="form__group flex-full">
+                        <input type="text" class="form__input" placeholder="Tên sản phẩm">
+                        <span class="form__message"></span>
+                    </div>
+                    <div class="form__group flex-full">
+                        <select name="category" id="category" class="form__input">
+                            <option value="0" class="form__option">Chọn danh mục</option>
+                            <option value="1" class="form__option">Keyboards</option>
+                            <option value="2" class="form__option">Switches</option>
+                            <option value="3" class="form__option">Keycaps</option>
+                            <option value="4" class="form__option">Kits</option>
+                            <option value="5" class="form__option">Deskpads</option>
+                        </select>
+                        <span class="form__message"></span>
+                    </div>
+                    <div class="form__group flex-full">
+                        <input type="text" class="form__input" placeholder="Đơn giá">
+                        <span class="form__message"></span>
+                    </div>
+                    <div class="form__group flex-full flex-column g12 image-uploader">
+                        <label for="imageUpload" class="form__input flex-between" style="display: flex">
+                            <span>Upload</span>
+                            <i class="fal fa-arrow-to-top"></i>
+                        </label>
+                        <input type="file" multiple hidden id="imageUpload">
+                        <div class="image-uploader--panel p12 r8 common-box flex-column">
+                            <div class="img__box row g12">
+                                <div class="img__box--item">
+                                    <img src="/app/views/assets/images/banner2.webp" alt="">
+                                    <a href="" class="delete__btn poa"><i class="fal fa-times"></i></a>
+                                </div>
+                                <div class="img__box--item">
+                                    <img src="/app/views/assets/images/banner2.webp" alt="">
+                                    <a href="" class="delete__btn poa"><i class="fal fa-times"></i></a>
+                                </div>
+                                <div class="img__box--item">
+                                    <img src="/app/views/assets/images/banner2.webp" alt="">
+                                    <a href="" class="delete__btn poa"><i class="fal fa-times"></i></a>
+                                </div>
+                                <div class="img__box--item">
+                                    <img src="/app/views/assets/images/banner2.webp" alt="">
+                                    <a href="" class="delete__btn poa"><i class="fal fa-times"></i></a>
+                                </div>
+                            </div>
+                            <span class="body-text3 mt12"><span class="required">*</span> Tối đa 10 ảnh</span>
+                            <div class="flex flex-full g12 j-end uploader__btns">
+                                <button class="btn alert__btn">
+                                    <i class="fal fa-file-times"></i>
+                                    Xóa tất cả 
+                                </button>
+                                <button class="btn primary__btn">
+                                    <i class="fal fa-arrow-to-top"></i>
+                                    Tải lên
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form__group flex-column g12">
+                        <input class="form__input" placeholder="Lựa chọn 1">
+                        <input class="form__input" placeholder="Lựa chọn 2">
+                        <input class="form__input" placeholder="Lựa chọn 3">
+                        <button class="btn addNewOption__btn flex-full">
+                            <i class="fal fa-plus"></i>
+                            Thêm lựa chọn
+                        </button>
+                    </div>
+                    <div class="form__group">
+                        <textarea name="description" id="" cols="30" rows="10" class="form__input" placeholder="Mô tả ngắn / 255"></textarea>
+                    </div>
+                    <div class="form__group">
+                        <textarea name="detail" id="" cols="30" rows="15" class="form__input" placeholder="Chi tiết / 1024"></textarea>
+                    </div>
+                    <div class="form-btn__group flex g12 flex-full j-end">
+                        <button type="submit" class="btn alert__btn">
+                            <i class="fal fa-file-times"></i>
+                            Xóa tất cả 
+                        </button>
+                        <button type="submit" class="btn primary__btn">
+                            <i class="fal fa-plus"></i>
+                            Thêm sản phẩm
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+<script src="/app/resources/js/main.js"></script>

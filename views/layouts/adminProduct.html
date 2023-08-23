@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Dashboard</title>
+    <link rel="stylesheet" href="/app/resources/sass/css/app.css">
+    <link rel="icon" type="image/x-icon" href="/app/views/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="theme-light">
+    <div class="container-full admin__container flex">
+        <div class="admin__sidebar flex-column g30 p30">
+            <a href="index.php" class="logo flex-center">
+                <img src="/app/views/assets/images/logo.svg" alt=""><span class="logo__text">typistial</span>
+            </a>
+            <nav class="admin-sidebar__nav">
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fa-solid fa-chart-simple sidebar-nav__icon"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fa-solid fa-envelope sidebar-nav__icon"></i>
+                        Messages
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-archive sidebar-nav__icon"></i>
+                        Orders
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-box sidebar-nav__icon"></i>
+                        Products
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-user sidebar-nav__icon"></i>
+                        Customers
+                    </a>
+                </li>
+            </nav>
+            <nav class="admin-sidebar__nav">
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-user-edit sidebar-nav__icon"></i>
+                        Roles
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-repeat sidebar-nav__icon"></i>
+                        Requests
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fa-solid fa-gear sidebar-nav__icon"></i>
+                        Setting
+                    </a>
+                </li>
+            </nav>
+        </div>
+        <main class="admin__panel p20 flex-column flex-full g20">
+            <div class="admin__header full v-center flex-between">
+                <div class="header__icon sidebar__toggle p12 flex-center text r6 cp">
+                    <i class="fa-solid fa-sliders"></i>
+                </div>
+                <div class="header__searchbar">
+                    <form action="index.php?page=search" method="post" class="flex-full search__form oh">
+                        <input type="text" class="form__input" placeholder="Orders, customers, products...">
+                        <button type="submit" name="search" class="form__btn search__btn pi20">
+                            <i class="fa-solid fa-search text"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="flex g12 por">
+                    <a class="header__icon text p20 flex-center rf">
+                        <i class="fa-solid fa-bell"></i>
+                    </a>
+                    <a class="header__icon rf admin__avt toggle-admin-subnav common-banner">
+                        <img src="/app/views/assets/images/user__avt.png" alt="">
+                    </a>
+                    <ul class="admin__subnav r12 poa oh">
+                        <li class="subnav__item">
+                            <a href="" class="nav__link flex g12">
+                                <div class="admin__avt">
+                                    <img src="/app/views/assets/images/user__avt.png" alt="">
+                                </div>
+                                <div class="flex-column">
+                                    <h2 class="body-text2 md admin__name">Hồ Duy Hoàng Giang</h2>
+                                    <h2 class="label md admin__role">Admin</h2>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="subnav__item flex flex-between">
+                            <form action="" class="search__form">
+                                <input type="text" class="form__input" placeholder="Search...">
+                                <button type="submit" name="search"><i class="fas fa-search text"></i></button>
+                            </form>
+                        </li>
+                        <li class="subnav__item">
+                            <a href="" class="nav__link flex-between">
+                                Messages
+                                <span class="noti rf flex-center smb">5+</span>
+                            </a>
+                        </li>
+                        <li class="subnav__item">
+                            <a href="" class="nav__link flex-between">
+                                Schedule
+                                <!-- <span class="noti rf flex-center smb">5+</span> -->
+                            </a>
+                        </li>
+                        <li class="subnav__item">
+                            <a href="" class="nav__link flex-between">
+                                Your plans
+                                <!-- <span class="noti rf flex-center smb">5+</span> -->
+                            </a>
+                        </li>
+                        <li class="subnav__item">
+                            <a href="" class="nav__link flex-between">
+                                Reminder
+                                <!-- <span class="noti rf flex-center smb">5+</span> -->
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="admin__box add-product__bar flex-between v-center common-box p20 r12">
+                <h4 class="heading-4 admin__box--title">Add new product</h4>
+                <a href="" class="p20 flex-center add-product__btn r8">
+                    <i class="fal fa-plus" style="font-size: 2rem;"></i>
+                </a>
+            </div>
+            <div class="admin__main flex-column g12 common-box p20 r12">
+                <div class="flex-between v-center">
+                    <h4 class="heading-4 admin__box--title">All products</h4>
+                    <div class="filter order-filter toggle-filter flex text v-center smb g6 cp p10">
+                        <i class="far fa-filter"></i>
+                        Filter
+                        <ul class="filter__list">
+                            <li class="filter__item">
+                                <a href="" class="filter__link flex-between v-center">
+                                    <div class="filter__name smb">Keyboards</div>
+                                    <div class="filter__sublabel label">55</div>
+                                </a>
+                            </li>
+                            <li class="filter__item">
+                                <a href="" class="filter__link flex-between v-center">
+                                    <div class="filter__name smb">Switches</div>
+                                    <div class="filter__sublabel label">55</div>
+                                </a>
+                            </li>
+                            <li class="filter__item">
+                                <a href="" class="filter__link flex-between v-center">
+                                    <div class="filter__name smb">Keycaps</div>
+                                    <div class="filter__sublabel label">55</div>
+                                </a>
+                            </li>
+                            <li class="filter__item">
+                                <a href="" class="filter__link flex-between v-center">
+                                    <div class="filter__name smb">Kits</div>
+                                    <div class="filter__sublabel label">55</div>
+                                </a>
+                            </li>
+                            <li class="filter__item">
+                                <a href="" class="filter__link flex-between v-center">
+                                    <div class="filter__name smb">Deskpads</div>
+                                    <div class="filter__sublabel label">55</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="admin-product__wrapper flex-full">
+                    <!-- single product start -->
+                    <div class="admin-product__item pb12 flex flex-full flex-between">
+                        <div class="flex g12">
+                            <div class="admin-product__banner common-banner" style="background-image: url('/app/views/assets/images/banner4.webp')"></div>
+                            <div class="flex-column flex-between">
+                                <h4 class="admin-product__name body-text1 md">Product name</h4>
+                                <h4 class="body-text2 label">Unit price: $45</h4>
+                                <h4 class="body-text2 label">55 products left</h4>
+                            </div>
+                        </div>
+                        <div class="product__info product__info--updatedate flex-column flex-between j-center">
+                            <h4 class="body-text2 md tac">Update date</h4>
+                            <h4 class="body-text2 label tac">08/03/2023</h4>
+                            <h4 class="body-text2 label tac">21:19:53</h4>
+                        </div>
+                        <div class="flex-column flex-between end">
+                            <a class="body-text2 md tac"><i class="fal fa-times rotate__btn"></i></a>
+                            <nav class="flex g60 por">
+                                <ul class="product-function__nav flex-between g60 v-center">
+                                    <li class="nav__item">
+                                        <a href="#" class="nav__link flex-column flex-center g6">
+                                            <i class="fal fa-eye"></i>
+                                            <span class="body-text3">200</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav__item">
+                                        <a href="#" class="nav__link flex-column flex-center g6">
+                                            <i class="fal fa-message"></i>
+                                            <span class="body-text3">120</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav__item">
+                                        <a href="#" class="nav__link flex-column flex-center g6">
+                                            <i class="fal fa-archive"></i>
+                                            <span class="body-text3">120</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav__item">
+                                        <a href="#" class="nav__link flex-column flex-center g6">
+                                            <i class="fal fa-pen"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <a href="#" class="more__btn nav__link flex-column flex-center g6">
+                                    <i class="far fa-ellipsis"></i>
+                                </a>
+                                <ul class="product-function__mininav oh poa common-box r12">
+                                    <li class="nav__item">
+                                        <a href="" class="nav__link flex g12">
+                                            <i class="fal fa-eye"></i>
+                                            Xem chi tiết
+                                        </a>
+                                    </li>
+                                    <li class="nav__item">
+                                        <a href="" class="nav__link flex g12">
+                                            <i class="fal fa-pen"></i>
+                                            Chỉnh sửa
+                                        </a>
+                                    </li>
+                                    <li class="nav__item">
+                                        <a href="" class="nav__link flex g12">
+                                            <i class="fal fa-eye-slash"></i>
+                                            Ẩn sản phẩm
+                                        </a>
+                                    </li>
+                                    <li class="nav__item">
+                                        <a href="" class="text-warning nav__link flex g12">
+                                            <i class="fal fa-trash"></i>
+                                            Xóa sản phẩm
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- single product end -->
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+<script src="/app/resources/js/main.js"></script>

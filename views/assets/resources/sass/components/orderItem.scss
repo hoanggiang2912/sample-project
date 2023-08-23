@@ -1,0 +1,12 @@
+.order__item {
+    .order__banner {
+        width: clamp(6rem, 4.571rem + 3.81vw, 8rem);
+        height: clamp(8rem, 6.571rem + 3.81vw, 10rem);
+    }
+    .order__price {
+        margin-bottom: 1.2rem;
+    }
+    .btn {
+        margin: 0 !important;
+    }
+}

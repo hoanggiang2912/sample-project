@@ -1,0 +1,52 @@
+.cart-summary {
+    .cart-summary__inner {
+        background: $common-color;
+        height: fit-content;
+        box-shadow: $box-shadow;
+        .form__group {
+            .form__input {
+                padding-block: 1.4rem;
+            }
+            .apply__btn {
+                color: $primary-color;
+                border: 2px solid $primary-color;
+                &:hover {
+                    background: $primary-color;
+                    color: $common-color;
+                }
+            }
+        }
+        .primary__btn {
+            padding-block: 2rem;
+        }
+    }
+}
+
+// || Responsive 
+/* Mobile: with < 740px */
+@media only screen and (max-width: 46.1875em){
+    .cart-summary {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        .apply__btn {
+            flex-grow: 1;
+        }
+    }
+    .toggle-detail {
+        display: block !important;
+    }
+}
+/* Tablet: width >= 740px and width < 1024px */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
+    
+}
+/* Mobile and Tablet: width < 1024px */
+@media only screen and (max-width: 63.9375em){
+    
+}
+/* PC: width >= 1024px */
+@media only screen and (min-width: 64em){
+
+}

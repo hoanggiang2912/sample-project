@@ -1,0 +1,204 @@
+// || Home page style start
+
+.slider__container {
+    min-width: 100%;
+    height: 530px !important;
+    position: relative;
+    overflow: hidden;
+    .slider__main {
+        height: 100%;
+        display: flex;
+        position: relative;
+        transition: .25s ease-in-out;
+        .slider__item {
+            width: 100%;
+            height: 100%;
+            flex: 1 0 100%;
+            position: relative;
+            transition: .2s linear;
+            background-size: cover;
+            background-position: center center;
+            .banner__btn {
+                margin: 0 auto;
+            }
+        }
+    }
+    // slider buttons start
+    .slider__btn {
+        position: absolute;
+        top: 50%;
+        font-size: 2em;
+        color: $primary-color;
+        cursor: pointer;
+    }
+    .prev__btn {
+        left: 60px;
+    }
+    .next__btn {
+        right: 60px;
+    }
+    // slider buttons end
+}
+
+// product section start
+
+.tab__container {
+    .tabs {
+        position: relative;
+        .tab__item {
+            font-size: clamp(1.8rem, 1.371rem + 1.143vw, 2.4rem);
+            font-weight: 700;
+            line-height: 5.4rem;
+            letter-spacing: 0.02em;
+            text-align: left;
+            color: $text-color;
+            cursor: pointer;
+        }
+        .tab__line {
+            background-color: $common-text-light-color;
+            position: absolute;
+            height: 4px;
+            border-radius: 5px;
+            transition: .25s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+    }
+    .panels {
+        .panel__item {
+            width: 100%;
+            display: none;
+            text-align: center;
+        }
+        .panel__item.active {
+            display: block;
+        }
+    }
+}
+// product section end
+
+// || help banner start
+.help-banner {
+    height: 300px;
+    flex-shrink: 0;
+    position: relative;
+    .row {
+        justify-content: center;
+        gap: 8px;
+        .btn {
+            border-radius: 0;
+            font-weight: $fw-b;
+            padding-inline: 24px;
+            padding-block: 18px;
+            font-size: clamp(1rem, 0.822rem + 0.541vw, 1.6rem);
+        }
+        .help__btn {
+            background: $primary-btn-bg;
+            color: $common-color;
+        }
+        .order__btn {
+            background: $common-color;
+            color: $text-color;
+        }
+    }
+}
+// || help banner end
+
+// || pre-built section start
+
+.pre-built__section {
+    .pre-built__main {
+        gap: 12px;
+        .pre-built__banner {
+            aspect-ratio: 3/2;
+            flex-basis: 600px;
+        }
+        .col-2 {
+            .name {
+                color: $text-color;
+                line-height: 3.2rem;
+            }
+            .price {
+                line-height: 3.2rem;
+            }
+            .v-nav {
+                .nav__item {
+                    line-height: 3.2rem;
+                }
+            }
+        }
+    }
+}
+
+// || pre-built section end
+
+// || wait list section start
+
+.waitlist__section {
+    .waitlist__main {
+        .waitlist__banner {
+            aspect-ratio: 3/2;
+            flex-basis: 600px;
+        }
+        .waitlist__content {
+            .body-text2 {
+                line-height: 2.4rem;
+            }
+        }
+    }
+}
+
+// || wait list section end
+
+// || partners sectoin start
+
+.partner__section {
+    .partner__main {
+        .common-banner {
+            aspect-ratio: 1;
+            flex-basis: 200px;
+            padding: 10px;
+        }
+    }
+}
+
+// || partners section end
+
+// || Home page style end
+
+// || Responsive 
+/* Mobile: with < 740px */
+@media only screen and (max-width: 46.1875em){
+	.respon__nav {
+        left: 0;
+    }
+    .slider__btn.prev__btn {
+        left: 30px;
+    }
+    .slider__btn.next__btn {
+        right: 30px;
+    }
+}
+/* Tablet: width >= 740px and width < 1024px */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
+    
+}
+/* Mobile and Tablet: width < 1024px */
+@media only screen and (max-width: 63.9375em){
+    .open__btn {
+        display: block !important;
+    }
+    .header__nav {
+        display: none !important;
+    }
+    .partner__main,
+    .collections__main,
+    .product__wrapper {
+        justify-content: center !important;
+    }
+    .col-2 {
+        flex-grow: 1;
+    }
+}
+/* PC: width >= 1024px */
+@media only screen and (min-width: 64em){
+
+}

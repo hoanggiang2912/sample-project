@@ -1,0 +1,63 @@
+@mixin switch-theme ($theme) {
+    @if $theme == light {
+        $accent-color: #ffc107;
+        $active-label-color: #1f2937;
+        $alert-btn-bg: #dd3232;
+        $alert-btn-hover-bg: #ff8080;
+        $banner-btn-bg: rgba(255, 255, 255, 0.4);
+        $banner-btn-text-color: #4a4a4a;
+        $background-color: #f5f5f5;
+        $common-color: #ffffff;
+        $default-label-color: #6b7280;
+        $hover-label-color: #4b5563;
+        $input-bg-color: #f5f5f5;
+        $input-border-color: #ced4da;
+        $input-label-color: #495057;
+        $input-text-color: #333333;
+        $outline-btn-border-color: #333333;
+        $outline-btn-hover-border-color: #666666;
+        $outline-btn-hover-text-color: #666666;
+        $outline-btn-text-color: #333333;
+        $pending-color: #17a2b8;
+        $placeholder-text-color: #999999;
+        $primary-btn-bg: #00c2ff;
+        $primary-btn-hover-bg: #5ed9ff;
+        $primary-color: #00c2ff;
+        $secondary-color: #ff9900;
+        $success-color: #4fc169;
+        $text-color: #333333;
+        $waiting-color: #6c757d;
+        $warning-color: #dd3232;
+        $box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.20);
+        $hover-box-shadow: 0px 6px 20px -10px rgba(0, 0, 0, 0.20);
+    } @else if $theme == dark {
+        $accent-color: #ffa500;
+        $active-label-color: #f3f4f6;
+        $background-color: #181818;
+        $common-color: #1e1e1e;
+        $default-label-color: #8d8d8d;
+        $hover-label-color: #e5e7eb;
+        $input-bg-color: #555555;
+        $input-border-color: #666666;
+        $input-label-color: #cccccc;
+        $input-text-color: #ffffff;
+        $ouline-btn-border-color: #a5a5a5;
+        $outline-btn-border-color: #ffffff;
+        $outline-btn-text-color: #d7c9c9;
+        $outline-btn-text-color: #ffffff;
+        $pending-color: #008080;
+        $placeholder-text-color: #cccccc;
+        $primary-color: #00a6da;
+        $secondary-color: #e67e22;
+        $success-color: #52ff52;
+        $text-color: #ffffff;
+        $waiting-color: #808080;
+        $warning-color: #ff5f5f;
+        $box-shadow: 0px 0px 8px 0px rgba(255, 255, 255, 0.20);
+        $hover-box-shadow: 0px 6px 20px -10px rgba(255, 255, 255, 0.20);
+    }
+}
+@mixin grid ($max-width , $max-height , $min-width , $min-height) {
+    grid-template-columns: repeat(auto-fit , minmax($min-width , $max-width));
+    grid-template-rows: repeat(auto-fit , minmax($min-height , $max-height));
+}

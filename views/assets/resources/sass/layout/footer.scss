@@ -1,0 +1,45 @@
+// || footer styles
+.footer {
+    background: $common-color;
+    padding-block: clamp(3rem, 0.857rem + 5.714vw, 6rem);
+    padding-inline: clamp(1rem, -2.571rem + 9.524vw, 6rem);
+    .footer__top {
+        .col-4 {
+            flex-basis: 300px;
+        }
+    
+        .footer-nav {
+            .footer-nav__title {
+                color: $text-color;
+            }
+        }
+    }
+    .footer__bottom {
+        .nav__item {
+            color: $text-color;
+            transition: $common-trans;
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 46.1875em){
+    .footer * {
+        align-items: center; 
+        flex-grow: 1;
+    }
+}
+/* Tablet: width >= 740px and width < 1024px */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
+    
+}
+/* Mobile and Tablet: width < 1024px */
+@media only screen and (max-width: 63.9375em){
+    
+}
+/* PC: width >= 1024px */
+@media only screen and (min-width: 64em){
+
+}

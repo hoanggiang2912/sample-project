@@ -1,0 +1,39 @@
+.admin__panel {
+    min-height: 100vh;
+    .admin__greeting {
+        color: $text-color;
+    }
+    .admin__main {
+        .admin__box {
+            background: $common-color;
+            box-shadow: $box-shadow;
+            &--icon {
+                color: $primary-color;
+            }
+            .admin__box--hightlight-text {
+                color: var(--light-text-color, #333);
+                font-size: clamp(3rem, 2.286rem + 1.905vw, 4rem);
+                font-weight: $fw-b;
+                text-align: center;
+            }
+        }
+    }
+}
+
+// || Responsive 
+/* Mobile: with < 740px */
+@media only screen and (max-width: 46.1875em){
+    
+}
+/* Tablet: width >= 740px and width < 1024px */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
+    
+}
+/* Mobile and Tablet: width < 1024px */
+@media only screen and (max-width: 63.9375em){
+    
+}
+/* PC: width >= 1024px */
+@media only screen and (min-width: 64em){
+
+}

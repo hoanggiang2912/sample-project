@@ -1,0 +1,14 @@
+.user-sidebar {
+    min-width: 25rem;
+    background: $common-color;
+    box-shadow: $box-shadow;
+    .nav__item {
+        .nav__link {
+            display: block;
+            padding: 16px 20px;
+        }
+        &:hover {
+            background: $common-hover-bg;
+        }
+    }
+}

@@ -1,0 +1,40 @@
+.bill-info__form {
+    .bill-info__body {
+        width: 65%;
+        background: $common-color;
+        box-shadow: $box-shadow;
+        .form__group {
+            display: flex;
+            flex-direction: column;
+        }
+        .shipping__options {
+            .shipping__option {
+                padding: 16px 20px;
+                border: 1px solid $input-border-color;
+                gap: 12px;
+                align-self: stretch;
+                border-radius: 4px;
+                &:hover {
+                    background: $input-bg-color;
+                }
+            }
+            .shipping__option.active {
+                .option__btn {
+                    color: $primary-color;
+                }
+            }
+        }
+    }
+}
+
+.shipping__option.active .option-btn {
+    color: var(--maincolor);
+}
+
+.shipping__option.active .fa-circle {
+    display: none;
+}
+
+.shipping__option:is(:not(.shipping__option.active)) .fa-circle-check {
+    display: none;
+}

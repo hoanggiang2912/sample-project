@@ -1,0 +1,107 @@
+.cart__section {
+    .cart-product__wrapper {
+        width: 70%;
+        padding-inline: clamp(1rem, -0.429rem + 3.81vw, 3rem);
+        box-shadow: $box-shadow;
+        background: $common-color;
+        align-self: stretch;
+        position: relative;
+        .cart__product {
+            padding-block: 16px;
+            .cart-product__banner {
+                width: clamp(8rem, 3.714rem + 11.429vw, 14rem);
+                height: clamp(10rem, 4.643rem + 14.286vw, 17.5rem);
+            }
+            .cart-product__name {
+                color: $text-color;
+                font-size: clamp(1.3rem, 0.8rem + 1.333vw, 2rem);
+                font-weight: $fw-rg;
+                letter-spacing: 0.05rem;
+            }
+            .cart-product__price {
+                color: $text-color;
+                font-size: 1.6rem;
+                font-weight: $fw-smb;
+                letter-spacing: .05rem;
+            }
+            .cart-product__btn {
+                color: $text-color;
+                font-size: 2rem;
+            }
+            .cart-product__input {
+                outline: none;
+                border: none;
+                text-align: center;
+                width: 5rem;
+            }
+        }
+        .cart-empty__announce {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-direction:column;
+            .announce__text {
+                color: $text-color;
+                font-size: clamp(2rem, 0.571rem + 3.81vw, 4rem);
+                font-weight: $fw-smb;
+                letter-spacing: 1px;
+            }
+            .solid__btn {
+                background: $text-color;
+                width: fit-content;
+                font-weight: $fw-smb;   
+            }
+        }
+    }
+    .cart__summary {
+        background: $common-color;
+        height: fit-content;
+        box-shadow: $box-shadow;
+        .summary__wrapper {
+            .summary__title {
+                color: $text-color;
+                font-size: 1.8rem;
+                font-weight: $fw-b; 
+            }
+            .summary__price ,
+            .summary__total__price {
+                color: $text-color;
+                font-weight: $fw-smb;
+            }
+            .coupon {
+                color: $primary-color;
+                i {
+                    transition: $boucing-trans;
+                }
+                &:hover {
+                    i {
+                        transform: translateX(1rem);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// || Responsive 
+/* Mobile: with < 740px */
+@media only screen and (max-width: 46.1875em){
+    
+}
+/* Tablet: width >= 740px and width < 1024px */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
+    
+}
+/* Mobile and Tablet: width < 1024px */
+@media only screen and (max-width: 63.9375em){
+    
+}
+/* PC: width >= 1024px */
+@media only screen and (min-width: 64em){
+
+}

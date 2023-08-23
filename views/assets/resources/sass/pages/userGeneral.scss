@@ -1,0 +1,54 @@
+.user__section {
+    padding-top: clamp(4rem, -0.286rem + 11.429vw, 10rem);
+    padding-bottom: 6rem;
+    padding-inline: clamp(2rem, -10.857rem + 34.286vw, 20rem) !important;
+    position: relative;
+    z-index: 1;
+    .user-section__main {
+        .user-info__top {
+            background: $common-color;
+            align-self: stretch;
+            box-shadow: $box-shadow;
+            .user__avt {
+                width: clamp(3.5rem, 2.429rem + 2.857vw, 5rem);
+                aspect-ratio: 1;
+            }
+            .user__detail {
+                font-size: clamp(1.3rem, 1.086rem + 0.571vw, 1.6rem);
+            }
+        }
+        .user-info__body{
+            flex-wrap: wrap-reverse;
+            .user-form {
+                width: 70% !important;
+                background: $common-color;
+                box-shadow: $box-shadow;
+                height: fit-content;
+                .form__group {
+                    .form__input {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+/* Mobile: with < 740px */
+@media only screen and (max-width: 46.1875em){
+    
+}
+/* Tablet: width >= 740px and width < 1024px */
+@media only screen and (min-width: 46.25em) and (max-width: 63.9375em){
+    
+}
+/* Mobile and Tablet: width < 1024px */
+@media only screen and (max-width: 63.9375em){
+    .btn {
+        flex-grow: 1;
+        margin-top: 12px;
+    }
+}
+/* PC: width >= 1024px */
+@media only screen and (min-width: 64em){
+
+}

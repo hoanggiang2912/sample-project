@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Dashboard</title>
+    <link rel="stylesheet" href="/app/resources/sass/css/app.css">
+    <link rel="icon" type="image/x-icon" href="/app/views/assets/images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="theme-light">
+    <div class="container-full admin__container flex">
+        <div class="admin__sidebar flex-column g30 p30">
+            <a href="index.php" class="logo flex-center">
+                <img src="/app/views/assets/images/logo.svg" alt=""><span class="logo__text">typistial</span>
+            </a>
+            <nav class="admin-sidebar__nav">
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fa-solid fa-chart-simple sidebar-nav__icon"></i>
+                        Dashboard
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fa-solid fa-envelope sidebar-nav__icon"></i>
+                        Messages
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-archive sidebar-nav__icon"></i>
+                        Orders
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-box sidebar-nav__icon"></i>
+                        Products
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-user sidebar-nav__icon"></i>
+                        Customers
+                    </a>
+                </li>
+            </nav>
+            <nav class="admin-sidebar__nav">
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-user-edit sidebar-nav__icon"></i>
+                        Roles
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fas fa-repeat sidebar-nav__icon"></i>
+                        Requests
+                    </a>
+                </li>
+                <li class="nav__item sidebar-nav__item r6">
+                    <a href="" class="nav__link sidebar-nav__link row g12 p20 md">
+                        <i class="fa-solid fa-gear sidebar-nav__icon"></i>
+                        Setting
+                    </a>
+                </li>
+            </nav>
+        </div>
+        <main class="admin__panel p20 flex-column flex-full g20">
+            <h4 class="heading-4">Add new category</h4>
+            <div class="admin__main flex-column g12">
+                <form action="" method="post" class="form admin__form update-category__form">
+                    <table class="category__table r12 oh full">
+                        <!-- table head start -->
+                        <tr>
+                            <th style="width: 80%">Tên danh mục</th>
+                            <th></th>
+                        </tr>
+                        <!-- table head end -->
+
+                        <!-- table body start -->
+                        <!-- single category start -->
+                        <tr>
+                            <td>
+                                <input type="text" class="form__input" placeholder="Category name">
+                            </td>
+                            <td class="flex j-center">
+                                <button type="submit" name="addNewCategory" class="btn primary__btn">Add</button>
+                            </td>
+                        </tr>
+                        <!-- single category end -->
+                        <!-- table body end -->
+                            
+                    </table>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+<script src="/app/resources/js/main.js"></script>

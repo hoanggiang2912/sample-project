@@ -1,0 +1,19 @@
+.payment-main__body {
+    .payment-method {
+        padding: 16px 20px;
+        border: 1px solid $input-border-color;
+        align-self: stretch;
+    }
+}
+
+.payment-method.active .option__btn {
+    color: $primary-color;
+}
+
+.payment-method.active .fa-circle {
+    display: none;
+}
+
+.payment-method:is(:not(.payment-method.active)) .fa-circle-check {
+    display: none;
+}

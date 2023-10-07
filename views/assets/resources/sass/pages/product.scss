@@ -3,7 +3,8 @@
         position: relative;
         z-index: 10;
         .main__inner {
-            padding: 30px 20px;
+            padding-block: 3rem;
+            padding-inline: clamp(1rem, 0.286rem + 1.905vw, 2rem);
             background: $common-color;
             box-shadow: $box-shadow;
             .filter__nav {
@@ -63,7 +64,7 @@
                     .product {
                         .product__inner {
                             height: fit-content;
-                            box-shadow: $box-shadow;
+                            // box-shadow: $box-shadow;
                             overflow: auto;
                         }
                     }

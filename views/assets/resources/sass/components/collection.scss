@@ -1,6 +1,8 @@
+
 .collections__item {
+    width: unset !important;
     aspect-ratio: 1;
-    min-width: 300px;
+    // min-width: 300px;
     overflow: hidden;
     .oh {
         height: 100%;
@@ -8,7 +10,7 @@
     div {
         overflow: hidden;
         .collection-item__inner {
-            padding: 20px 10px;
+            // padding: 20px 10px;
             width: 100%;
             height: 100%;
             position: relative;

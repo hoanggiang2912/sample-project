@@ -5,7 +5,7 @@
         return $last_id;
     }
     function createCart ($billId , $product_name , $product_img , $unit_price , $product_qty , $total_cost) {
-        $mySQL = "INSERT INTO cart (id_bill , product_name , product_img , unit_price , product_qty , total_cost) VALUES ('$billId' , '$product_name' , '$product_img' , '$unit_price' , '$product_qty' , '$total_cost')";
+        $mySQL = "INSERT INTO cart (id_bill , product_name , img , unit_price , qty , total_cost) VALUES ('$billId' , '$product_name' , '$product_img' , '$unit_price' , '$product_qty' , '$total_cost')";
         insert($mySQL);
     }
     function totalBill ($cart) {

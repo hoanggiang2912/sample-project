@@ -35,13 +35,14 @@ select,
 textarea {
     background-color: transparent;
     outline: none;
+    color: $text-color;
 }
 
 html {
     font-size: 62.5%;
     font-family: $main-font;
     box-sizing: border-box;
-    color-scheme: light dark;
+    // color-scheme: light dark;
 }
 
 button {

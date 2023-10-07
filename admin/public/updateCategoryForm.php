@@ -2,27 +2,37 @@
     extract($catalog[0]);
 ?>
 
-<div class="container admin-page">
-    <?php
-    require_once 'sidebar.php';
+<div class="container-full admin__container flex">
+    <?php 
+        require_once 'sidebar.php';
     ?>
-    <div class="admin-page__body">
-        <main class="admin-main__panel cate__table">
-            <form action="index.php?pg=updateCategoryForm&cateId=<?=$id?>" method="post" style="display: flex; flex-direction: column; align-self: stretch">
-                <h2 class="title" style="margin-bottom: 22px">Update category</h2>
-                <table>
+    <main class="admin__panel p20 flex-column flex-full g20">
+        <h4 class="heading-4">Update category</h4>
+        <div class="admin__main category__main flex-column g12">
+            <form action="index.php?pg=updateCategoryForm&cateId=<?= $id ?>" method="post" class="form admin__form update-category__form">
+                <table class="category__table r12 oh full">
+                    <!-- table head start -->
                     <tr>
                         <th style="width: 80%">Tên danh mục</th>
                         <th></th>
                     </tr>
+                    <!-- table head end -->
+
+                    <!-- table body start -->
+                    <!-- single category start -->
                     <tr>
-                        <td><input type="text" name="name" placeholder="Ex: Feature product..." value="<?=$name?>"></td>
                         <td>
-                            <button type="submit" name="update__btn" class="form__btn">Update</button>
+                            <input type="text" name="name" class="form__input" value="<?= $name ?>">
+                        </td>
+                        <td class="flex j-center">
+                            <input type="submit" name="categoryUpdate" class="btn form__btn primary__btn" value="Cập nhật">
                         </td>
                     </tr>
+                    <!-- single category end -->
+                    <!-- table body end -->
+                        
                 </table>
             </form>
-        </main>
-    </div>
-</div> 
+        </div>
+    </main>
+</div>

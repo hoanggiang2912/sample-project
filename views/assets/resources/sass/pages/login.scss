@@ -27,6 +27,16 @@
                         border-color: $primary-color;
                     }
                 }
+                .toggle-password {
+                    right: 2rem;
+                    top: 2.4rem;
+                    color: $input-label-color;
+                    transition: $boucing-trans;
+                    cursor: pointer;
+                    &:hover {
+                        color: $hover-label-color;
+                    }
+                }
             }
             .forgot-password {
                 position: relative;

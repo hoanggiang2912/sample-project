@@ -54,24 +54,24 @@
                 <div class="panels">
                     <!-- Keyboard panel -->
                     <div class="panel panel__item active">
-                        <div class="row product__wrapper mt30">
+                        <div class="product__wrapper auto-grid mt30">
                             <!-- single product start -->
                             <?= renderGeneralProduct($keyboards) ?>
                             <!-- single product end -->
                         </div>
                         <div class="flex-center mt30">
-                            <a href="index.php?pg=viewProduct?idCatalog=1" class="btn outline__btn">Xem thêm</a>
+                            <a href="index.php?pg=viewProduct&idcatalog=1" class="btn seemore__btn outline__btn">Xem thêm</a>
                         </div>
                     </div>
                     <!-- switches panel -->
                     <div class="panel panel__item">
-                        <div class="row product__wrapper mt30">
+                        <div class="product__wrapper auto-grid mt30">
                             <!-- single product start -->
                             <?= renderGeneralProduct($switches) ?>
                             <!-- single product end -->
                         </div>
                         <div class="flex-center mt30">
-                            <a href="" class="btn outline__btn">Xem thêm</a>
+                            <a href="index.php?pg=viewProduct&idcatalog=3" class="btn seemore__btn outline__btn">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -92,24 +92,24 @@
                 <div class="panels">
                     <!-- kits panel -->
                     <div class="panel panel__item active">
-                        <div class="row product__wrapper mt30 flex-between">
+                        <div class="product__wrapper auto-grid mt30">
                             <!-- single product start -->
                             <?= renderGeneralProduct($kits)?>
                             <!-- single product end -->
                         </div>
                         <div class="flex-center mt30">
-                            <a href="index.php?pg=viewProduct?idCatalog=4" class="btn outline__btn">Xem thêm</a>
+                            <a href="index.php?pg=viewProduct&idcatalog=4" class="btn seemore__btn outline__btn">Xem thêm</a>
                         </div>
                     </div>
                     <!-- keycaps panel -->
                     <div class="panel panel__item">
-                        <div class="row product__wrapper mt30">
+                        <div class="product__wrapper auto-grid mt30">
                             <!-- single product start -->
                             <?= renderGeneralProduct($keyboards) ?>
                             <!-- single product end -->
                         </div>
                         <div class="flex-center mt30">
-                            <a href="index.php?pg=viewProduct?idCatalog=1" class="btn outline__btn">Xem thêm</a>
+                            <a href="index.php?pg=viewProduct&idcatalog=1" class="btn seemore__btn outline__btn">Xem thêm</a>
                         </div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
         <section class="section pre-built__section flex-column">
             <h2 class="title mb30">PRE-BUILT KEYBOARDS</h2>
             <h4 class="sub-title tac mb30">“Save time ! Let’s us build your keyboard</h4>
-            <main class="row full pre-built__main">
+            <main class="row full pre-built__main flex-center">
                 <div class="col-2 common-banner pre-built__banner" style="background-image: url('./views/assets/images/odin-75-sparklight-keycaps.jpg')"></div>
                 <div class="col-2 flex-column g12">
                     <h2 class="title tal name">ODIN 75 HOT-SWAP KEYBOARD WITH PBTFANS SPARK LIGHT KEYCAPS</h2>
@@ -158,7 +158,7 @@
         <!-- || wait list section start -->
         <section class="section waitlist__section flex-column">
             <h2 class="title mb30">THAM GIA DANH SÁCH CHỜ</h2>
-            <main class="row full waitlist__main g20">
+            <main class="row full waitlist__main g20 flex-center">
                 <div class="col-2 common-banner waitlist__banner" style="background-image: url('./views/assets/images/banner4.webp')"></div>
                 <div class="col-2 waitlist__content">
                     <h2 class="title mb30 rc tal">DANH SÁCH CHỜ BAUER LITE</h2>
@@ -193,7 +193,7 @@
         <!-- || collections section start -->
         <section class="section collections__section">
             <h2 class="title">TẤT CẢ SẢN PHẨM CỦA CHÚNG TÔI</h2>
-            <main class="section__main collections__main full row mt60 flex-between">
+            <main class="section__main collections__main full mt60 grid-3 g12">
                 <!-- single collection start -->
                 <?= renderCollectionItem($catalogs)?>
                 <!-- single collection end -->

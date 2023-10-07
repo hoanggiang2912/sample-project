@@ -3,7 +3,18 @@
     background: $common-color;
     padding-block: clamp(3rem, 0.857rem + 5.714vw, 6rem);
     padding-inline: clamp(1rem, -2.571rem + 9.524vw, 6rem);
+    
     .footer__top {
+        .logo {
+            img {
+                max-width: 5.5rem;
+            }
+        }
+        .email__form {
+            .form__input {
+                width: 100% !important;
+            }
+        }
         .col-4 {
             flex-basis: 300px;
         }

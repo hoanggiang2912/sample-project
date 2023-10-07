@@ -1,6 +1,7 @@
 <?php
 session_start();
 ob_start();
+ob_clean();
 
 
 require_once "./models/connect.php";
@@ -12,56 +13,55 @@ require_once "./models/banner.php";
 require_once "./models/user.php";
 require_once "./models/bill.php";
 require_once "./models/shipping.php";
+require_once "./models/comment.php";
 //Require header
 require_once "./views/header.php";
 
 
-
 if (isset($_GET['pg']) && ($_GET['pg'] != '')) {
     switch ($_GET['pg']) {
-        case 'aboutUs':
-            require_once "./views/aboutUs.php";
-            break;
         case 'userLogout':
             if (isset($_SESSION['user'])) {
                 unset($_SESSION['user']);
                 header('Location: index.php');
             }
-            require_once "./views/aboutUs.php";
             break;
         case 'createAccount':
             $message = '';
             if (isset($_POST['createAccount']) && $_POST['createAccount']) {
-                $name = $_POST['username'];
+                $userName = $_POST['userName'];
                 $email = $_POST['email'];
                 $password = $_POST['password'];
 
-                $errors = validateUserData($name, $password, $email);
-                if (empty($errors)) {
-                    addUser($name, $email, $password);
+                if ($userName !== '' && $email !== '' && $password !== '') {
+                    addUser($userName, $email, $password);
+                    $recentUserId = getUserByUsername ($username)['id'];
                     $user = [
-                        "name" => $name,
+                        "userName" => $userName,
                         "email" => $email,
-                        "password" => $password
+                        "password" => $password,
+                        "id" => $recentUserId
                     ];
                     $_SESSION['user'] = $user;
                     if (isset($_SESSION['user'])) {
                         header('Location: index.php?pg=login');
                     }
                 } else {
-                    extract($errors);
+                    $message = '<span class="form__message tac">Please fill all the blank before continuing!</span>';             
                 }
             }
             require_once "./views/createAccount.php";
             break;
         case 'login':
+            $errorMessage = '';
             if (isset($_POST['login']) && $_POST['login']) {
                 $name = $_POST['name'];
                 $password = $_POST['password'];
+                // echo $name , $password;
                 if ($name !== '' && $password !== '') {
                     $user = checkAdmin($name, $password);
                     if (!$user) {
-                        $errorMessage = '<span class="form__message">Username or password is incorrect , please try again!</span>';
+                        $errorMessage = '<span class="form__message label">Username or password is incorrect , please try again!</span>';
                     } else {
                         extract($user);
                         $userSaved = [
@@ -79,7 +79,7 @@ if (isset($_GET['pg']) && ($_GET['pg'] != '')) {
                         }
                     }
                 } else {
-                    $errorMessage = '<span class="form__message">Username or password is invalid</span>';
+                    $errorMessage = '<span class="form__message label">Username and password can\'t be empty</span>';
                 }
             }
             require_once './views/login.php';
@@ -87,19 +87,27 @@ if (isset($_GET['pg']) && ($_GET['pg'] != '')) {
         case 'contact':
             require_once "./views/contact.php";
             break;
+        case 'aboutUs':
+            require_once "./views/about-us.php";
+            break;
         case 'viewProduct':
             $catalogs = getCatalogs(5);
-            $product = getAllProduct();
-            $catalogName = 'products';
+            $products = getAllProduct();
+            $catalogName = 'product';
+            $idcatalog = 0;
+            if (isset($_GET['min']) && isset($_GET['max'])) {
+                $min = $_GET['min'];
+                $max = $_GET['max'];
+                $products = getProductByPriceFilter($min, $max);
+            }
             if (isset($_GET['idcatalog']) && ($_GET['idcatalog'] > 0)) {
                 $idcatalog = $_GET['idcatalog'];
-                $product = getProductByCatalogId($idcatalog);
+                $products = getProductByCatalogId($idcatalog);
                 $catalogName = getCatalogNameById($idcatalog)['name'];
                 $recommendCatalog = getRelatedCatalog($idcatalog, 3);
+                $relatedCatalog = getRelatedCatalog ($idcatalog , 3);   
             } else {
-                $idcatalog = 0;
-                // $catalogName = 'products';
-                // $product = getAllProduct();
+                $relatedCatalog = getCatalogs(3);
             }
             if ($idcatalog > 0) {
                 if (isset($_GET['pageLimit']) && ($_GET['pageLimit'] > 0)) {
@@ -114,14 +122,11 @@ if (isset($_GET['pg']) && ($_GET['pg'] != '')) {
                     $products = getAllProduct(9);
                 }
             }
-            // if (isset($_GET['min']) && isset($_GET['max'])) {
-            //     $min = $_GET['min'];
-            //     $max = $_GET['max'];
-            //     $products = getProductByPriceFilter($min, $max);
-            // }
+            
             require_once "./views/viewProduct.php";
             break;
         case 'viewCart':
+            print_r($_SESSION['cart']);
             require_once './views/viewCart.php';
             break;
         case 'clearCart':
@@ -132,6 +137,18 @@ if (isset($_GET['pg']) && ($_GET['pg'] != '')) {
             if (isset($_GET['delProduct']) && $_GET['delProduct'] >= 0) {
                 array_splice($_SESSION['cart'], $_GET['delProduct'], 1);
                 header('location: index.php?pg=viewCart');
+            }
+            break;
+        case 'buynow':
+            if(isset($_GET['productId'])) {
+                $productId = $_GET['productId'];
+                $product = getProductById($productId);
+                $_SESSION['cart'][] = $product;
+                if (isset($_SESSION['user'])) {
+                    header("Location: index.php?pg=order&productId=$productId");
+                } else {
+                    header("Location: index.php?pg=login&productId=$productId");
+                }
             }
             break;
         case 'addCart':
@@ -145,9 +162,9 @@ if (isset($_GET['pg']) && ($_GET['pg'] != '')) {
                     "name" => $name,
                     "price" => $price,
                     "img" => $img,
-                    "qty" => $qty
+                    "qty" => $qty,
                 ];
-                if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart']))
+                if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) 
                     $_SESSION['cart'] = [];
                 // check product appeared
                 $isAvailable = false;
@@ -160,7 +177,7 @@ if (isset($_GET['pg']) && ($_GET['pg'] != '')) {
                     }
                 }
                 if (!$isAvailable) {
-                    array_push($_SESSION['cart'], $product);
+                    $_SESSION['cart'][$id] = $product;
                 }
                 header('location: index.php?pg=viewCart');
             }
@@ -168,126 +185,42 @@ if (isset($_GET['pg']) && ($_GET['pg'] != '')) {
         case 'viewProductDetail':
             if (isset($_GET['productId']) && $_GET['productId']) {
                 $productId = $_GET['productId'];
+                $product = getProductById($productId);
                 $detail = getProductDetail($productId);
                 $getDescription = getDescById($productId);
-                $description = array_slice($getDescription, 2);
+                // $description = array_slice($getDescription, 2);
                 $productSpect = getProductSpectById($productId);
                 $productOptions = getProductOptionsById($productId);
                 $galleryImages = getProductImageById($productId);
+                
+                // view comment
+                $comments = getCommentByProductId($productId);
+                // print_r($comments);
+                // add comment
+                if (isset($_POST['addComment'])) {
+                    if (!isset($_SESSION['user']) && empty($_SESSION['user'])) {
+                        $loginFormStatus = 'active';
+                    } else {
+                        $comment = $_POST['comment'];
+                        extract($_SESSION['user']);
+                        addComment($comment, $id, $productId);
+                    }
+                }
                 require_once "./views/productDetail.php";
             }
             break;
-        case 'general':
-            // user profile view
-            if (isset($_SESSION['user']) && $_SESSION['user']) {
-                $user = $_SESSION['user'];
-                // user profile general update
-                if (isset($_POST['updateGeneral'])) {
-                    $username = $_POST['username'];
-                    $email = $_POST['email'];
-                    updateUserGeneral($username, $email, $user['id']);
-                }
-            }
-            require_once './views/general.php';
-            break;
-        case 'editProfile':
-            // user profile view
-            if (isset($_SESSION['user']) && $_SESSION['user']) {
-                $userSaved = $_SESSION['user'];
-                // user profile update
-                $user = getUserById($userSaved['id']);
-                if (isset($_POST['updateProfile'])) {
-                    $fullName = $_POST['fullName'];
-                    $bio = $_POST['bio'];
-                    updateUserProfile($fullname, $bio, $userId);
-                    header('Location: index.php?pg=editProfile&user=' . $userSaved['id'] . '');
-                }
-            }
-            require_once './views/userEditProfile.php';
-            break;
-        case 'password':
-            // user profile view
-            if (isset($_SESSION['user']) && $_SESSION['user']) {
-                $userSaved = $_SESSION['user'];
-                // user profile general update
-                $user = getUserById($userSaved['id']);
-                $message = '';
-                if (isset($_POST['updatePassword'])) {
-                    $newPassword = $_POST['newPassword'];
-                    $oldPassword = $_POST['oldPassword'];
-                    // Validate password
-                    if (empty($oldPassword)) {
-                        $message = "Please enter your old password";
-                    } else if ($oldPassword !== $user['password']) {
-                        $message = "Password is incorrect";
-                    } else if (strlen($newPassword) < 6) {
-                        $message = "Password must be at least 6 characters long.";
-                    } else if ($newPassword === $oldPassword) {
-                        $message = "Please consider another one, it looks like your old password";
-                    } else {
-                        updateUserPassword($newPassword, $userId);
-                        $message = "Password update successfully";
-                    }
-                } else {
-                    $message = '';
-                }
-            }
-            require_once './views/userPassword.php';
-            break;
         case 'order':
             // get information from form to create an order
-            $message = '';
-            $cart = $_SESSION['cart'];
-
-            if (isset($_POST['userOrder'])) {
-                $country = $_POST['country'];
-                $address = $_POST['address'];
-                $email = $_POST['email'];
-                $tel = $_POST['tel'];
-                $roadHome = $_POST['road-home'];
-                $city = $_POST['city'];
-                $ward = $_POST['ward'];
-                $shipping = $_POST['shipping'];
-                $totalBill = totalBill($cart);
-                $billId = createBill($address, $email, $tel, $shipping, $totalBill);
-                // validate form information
-                // if (!empty($address) && !empty($email) && !empty($tel) && !empty($roadHome) && !empty($city) && !empty($ward) && !empty($shipping)){
-                // $_SESSION['bill'] = [
-                //     "country" => $country ,
-                //     "address" => $address , 
-                //     "email" => $email , 
-                //     "tel" => $tel , 
-                //     "roadHome" => $roadHome , 
-                //     "city" => $city , 
-                //     "ward" => $ward , 
-                //     "shipping" => $shipping ,
-                //     "billId" => $billId ,
-                //     "totalBill" => $totalBill ,
-                //     "total" => $total
-                // ];
-                // then get cart information from session and id of the order just created
-                // insert order information into cart table
-                // } else {
-                // $message = '<span class="error__message">Please enter the required information</span>';
-                // }
-                foreach ($cart as $item) {
-                    extract($item);
-                    $product_name = $name;
-                    $product_img = $img;
-                    $unit_price = $price;
-                    $product_qty = $qty;
-                    $total_cost = $unit_price * $product_qty;
-                    createCart($billId, $product_name, $product_img, $unit_price, $product_qty, $total_cost);
-                }
-                header("Location: index.php?pg=payment&billId=$billId");
-                exit;
+            if(isset($_SESSION['user'])) {
+                $cart = $_SESSION['cart'];
+                $message = '';
+                require_once './views/order.php';
+            } else {
+                header("Location: index.php?pg=login");
             }
-            // confirm showing
-
-            // unset cart session
-            require_once './views/order.php';
             break;
         case 'payment':
+            $cart = $_SESSION['cart'];
             if (isset($_GET['billId'])) {
                 $billId = $_GET['billId'];
                 $shippingId = getShippingMethodByBillId($billId);
@@ -301,22 +234,23 @@ if (isset($_GET['pg']) && ($_GET['pg'] != '')) {
             $telView = '';
             if (isset($_POST['shippingAddress'])) {
                 extract($billInfo);
-                if ($address != '') {
-                    $addressView = $address;
+                if ($nguoidat_address != '') {
+                    $addressView = $nguoidat_address;
                 } else {
                     $addressView = '';
                 }
-                if ($email != '') {
-                    $emailView = $email;
+                if ($nguoidat_email != '') {
+                    $emailView = $nguoidat_email;
                 } else {
                     $emailView = '';
                 }
-                if ($tel != '') {
-                    $telView = $tel;
+                if ($nguoidat_phone != '') {
+                    $telView = $nguoidat_phone;
                 } else {
                     $telView = '';
                 }
             }
+            
             require_once './views/payment.php';
             break;
         case 'confirm':
@@ -328,9 +262,10 @@ if (isset($_GET['pg']) && ($_GET['pg'] != '')) {
                 extract($shippingId);
                 $shippingFee = getShippingFee($shipping)['price'];
                 $billInfo = getBillInfoById($billId);
+                // print_r($billInfo);
                 extract($billInfo);
                 $shippingName = getShippingMethodNameById($shipping);
-                $totalBill = totalBill($cart);
+                // print_r($shippingName);
                 if (isset($_POST['paymentDone'])) {
                     $payment = $_POST['paymentMethod'];
                     updatePaymentMethodByBillId($billId, $payment);
@@ -339,36 +274,8 @@ if (isset($_GET['pg']) && ($_GET['pg'] != '')) {
             }
             require_once './views/confirm.php';
             break;
-        case 'deleteAccount':
-            if (isset($_SESSION['user']) && $_SESSION['user']) {
-                // get user need to be deleted
-                $userSaved = $_SESSION['user'];
-                $user = getUserById($userSaved['id']);
-                // then check the comfirm password
-                // get password and checkbox firstly
-                $message = '';
-                if (isset($_POST['deleteAccount'])) {
-                    if (isset($_POST['delete-account'])) {
-                        $password = $_POST['password'];
-                        if ($password !== $user['password']) {
-                            $message = 'Password is incorrect';
-                        } else {
-                            deleteAccountById($userId);
-                            unset($_SESSION['user']);
-                            header('Location: index.php');
-                        }
-                    } else {
-                        $message = 'Please ensure that you want to delete the account';
-                    }
-                }
-            }
-            require_once './views/userDeleteAccount.php';
-            break;
-        case 'socialAccount':
-            require_once './views/userSocialAccount.php';
-            break;
         default:
-            require_once "./views/home.php";
+            // require_once "./views/home.php";
             break;
     }
 } else {

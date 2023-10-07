@@ -6,6 +6,13 @@
         }
         return get_all($mySQL);
     }
+    function getProductByPriceFilter($min , $max , $limit = 0) {
+        $mySQL = "SELECT * FROM product WHERE price BETWEEN $min AND $max";
+        if ($limit > 0) {
+            $mySQL .= " LIMIT $limit";
+        }
+        return get_all($mySQL);
+    }
     /**
      * Summary of getProductsByCatalogId
      * @param mixed $catalogId
@@ -75,9 +82,5 @@ VALUES ('$name', '$idCata' , '$price', '$amount', '$promotion', '$description', 
     function getDescById ($productId) {
         $mySQL = "SELECT * FROM description WHERE id_product = $productId"; 
         return get_one($mySQL);
-    }
-    function getProductByPriceFilter ($min , $max) {
-        $mySQL = "SELECT * FROM product WHERE price <= $max AND price >= $min"; 
-        return get_all($mySQL);
     }
 ?>

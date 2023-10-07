@@ -70,15 +70,15 @@ $break-line-color: #e1e1e1;
 
 // || Typography variables
 $main-font: 'Montserrat', sans-serif;
-$common-bodytext1: 2rem;
-$common-bodytext2: 1.6rem;
-$common-bodytext3: 1.3rem;
-$common-label: 1.6rem;
-$common-subtitle: 2rem;
-$desktop-heading1: 4.8rem;
-$desktop-heading2: 4rem;
-$desktop-heading3: 3.2rem;
-$desktop-heading4: 2.5rem;
+$common-bodytext1: clamp(1.6rem, 1.314rem + 0.762vw, 2rem);
+$common-bodytext2: clamp(1.3rem, 1.086rem + 0.571vw, 1.6rem);
+$common-bodytext3: clamp(1rem, 0.786rem + 0.571vw, 1.3rem);
+$common-label: clamp(1.3rem, 1.086rem + 0.571vw, 1.6rem);
+$common-subtitle: clamp(1.6rem, 1.314rem + 0.762vw, 2rem);
+$desktop-heading1: clamp(3.8rem, 3.086rem + 1.905vw, 4.8rem);
+$desktop-heading2: clamp(3.2rem, 2.629rem + 1.524vw, 4rem);
+$desktop-heading3: clamp(2.4rem, 1.829rem + 1.524vw, 3.2rem);
+$desktop-heading4: clamp(1.8rem, 1.3rem + 1.333vw, 2.5rem);
 $mobile-heading1: 4.0rem;
 $mobile-heading2: 3.2rem;
 $mobile-heading3: 2.5rem;

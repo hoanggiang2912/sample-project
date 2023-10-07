@@ -1,10 +1,16 @@
-<?php 
-    $keyboards = getProductByCatalogId(1 , 5);
-    $keycaps = getProductByCatalogId(2 , 5);
-    $switches = getProductByCatalogId(3 , 5);
-    $kits = getProductByCatalogId(4 , 5);
-    $deskpads = getProductByCatalogId(5, 5);
+<?php
 
+    require_once 'search.php';
+
+    if (function_exists('getProductByCatalogId')) {
+        $keyboards = getProductByCatalogId(1 , 5);
+        $keycaps = getProductByCatalogId(2 , 5);
+        $switches = getProductByCatalogId(3 , 5);
+        $kits = getProductByCatalogId(4 , 5);
+        $deskpads = getProductByCatalogId(5, 5);
+    }
+
+    
     function renderNavItem($arr) {
         $html = '';
         foreach ($arr as $item) {
@@ -37,11 +43,12 @@
             </nav>
         ';
     } else {
+        extract($_SESSION['user']);
         $userNav = '
             <nav class="user__nav r4">
                 <ul>
                     <li class="nav__item">
-                        <a href="index.php?pg=general" class="nav__link flex v-center g12">
+                        <a href="./user/index.php?pg=general&user='.$id.'" class="nav__link flex v-center g12">
                             <i class="fal fa-user"></i> Account
                         </a>
                     </li>
@@ -65,9 +72,13 @@
     <title>Home</title>
     <link rel="stylesheet" href="./views/assets/resources/sass/css/app.css">
     <link rel="icon" type="image/x-icon" href="./views/assets/images/favicon.png">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" rel="stylesheet"
         type="text/css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,9 +86,11 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
+    <script src="./views/assets/resources/js/validator.js"></script>
+
 </head>
 
-<body class="theme-light">
+<body class="theme-light por">
     <div class="container-full">
         <!-- || header start -->
         <header class="header">
@@ -89,7 +102,7 @@
                     <ul class="h-nav header__nav">
                         <li class="nav__item"><a href="index.php" class="nav__link">Trang chủ</a></li>
                         <li class="nav__item">
-                            <a href="index.php?pg=viewProduct" class="nav__link toggle-subnav">Sản phẩm</a>
+                            <a href="index.php?pg=viewProduct&idcatalog=0" class="nav__link toggle-subnav">Sản phẩm</a>
                             <ul class="header__subnav row">
                                 <li class="nav__item col-4 p20">
                                     <a href="index.php?pg=viewProduct" class="sub-title nav__link ttu">CATEGORIES</a>
@@ -116,7 +129,7 @@
                                     <a href="index.php?pg=viewProduct&idcatalog=4" class="nav__link sub-title ttu">KITS</a>
                                     <ul>
                                         <!-- render nav item start -->
-                                        <?= renderNavItem($kits) ?>
+                                        <?= renderNavItem($keycaps) ?>
                                         <!-- render nav item end -->
                                     </ul>
                                 </li>
@@ -132,7 +145,7 @@
                                     <a href="index.php?pg=viewProduct&idcatalog=2" class="nav__link sub-title ttu">KEYCAPS</a>
                                     <ul>
                                         <!-- render nav item start -->
-                                        <?= renderNavItem($keycaps) ?>
+                                        <?= renderNavItem($kits) ?>
                                         <!-- render nav item end -->
                                     </ul>
                                 </li>
@@ -146,26 +159,27 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav__item"><a href="index.php?pg=contactUs" class="nav__link">Hổ trợ</a></li>
+                        <li class="nav__item"><a href="index.php?pg=contact" class="nav__link">Liên hệ</a></li>
                         <li class="nav__item"><a href="index.php?pg=aboutUs" class="nav__link">Về chúng tôi</a></li>
                     </ul>
                 </nav>
                 <nav>
                     <ul class="h-nav header__nav icon__nav">
-                        <li class="nav__item" style="position: relative">
-                            <a href="index.php?pg=user" class="nav__link">
+                        <li class="nav__item por">
+                            <a href="" class="nav__link">
                                 <i class="fal fa-user"></i>
                             </a>
                             <!-- user nav render start -->
                             <?= $userNav?>
                             <!-- user nav render end -->
                         </li>
-                        <li class="nav__item" style="position: relative">
+                        <li class="nav__item por">
                             <a href="" class="nav__link">
                                 <i class="fal fa-search toggle-searchbar"></i>
                             </a>
+                            <!-- search form start -->
                             <div class="search__form__wrapper">
-                                <form action="" class="search__form">
+                                <form action="header.php" method="post" class="search__form flex-between por">
                                     <div class="form__group">
                                         <input type="text" class="form__input search__input"
                                             placeholder="Tên sản phẩm...">
@@ -173,10 +187,14 @@
                                     <button type="submit" class="search__btn" name="searchSubmit">
                                         <i class="fal fa-search text"></i>
                                     </button>
+                                    <div id="search-result" class="common-box poa p20 r8" style="display: block">
+                                        
+                                    </div>
                                 </form>
                             </div>
+                            <!-- search form end -->
                         </li>
-                        <li class="nav__item"><a href="" class="nav__link"><i class="fal fa-shopping-cart"></i></a></li>
+                        <li class="nav__item"><a href="index.php?pg=viewCart" class="nav__link"><i class="fal fa-shopping-cart"></i></a></li>
                     </ul>
                 </nav>
                 <i class="fal fa-bars open__btn" style="line-height: 80px;"></i>

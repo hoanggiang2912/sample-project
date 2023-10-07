@@ -1,0 +1,17 @@
+.error-page {
+    min-height: 100vh;
+    .error-text {
+        max-width: 70rem;
+        .hightlight-text {
+            font-size: clamp(4.5rem, -2.286rem + 18.095vw, 14rem);
+            font-weight: 700;
+        }
+        .primary__btn {
+            border: 2px solid $primary-color;
+        }
+    }
+    .common-banner {
+        width: 50rem;
+        aspect-ratio: 1;
+    }
+}

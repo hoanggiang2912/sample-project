@@ -2,6 +2,11 @@
     .admin-product__banner {
         width: clamp(8rem, 6.571rem + 3.81vw, 10rem);
         height: clamp(10rem, 8.214rem + 4.762vw, 12.5rem);
+        // flex: 1 1 calc(25% - 10px);
+        img {
+            width: 100%;
+            height: auto;
+        }
     }
     .more__btn {
         display: none;

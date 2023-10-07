@@ -1,5 +1,4 @@
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
+
 
 const app = {
     evenHandler () {
@@ -54,7 +53,8 @@ const app = {
                     const activePanels = activeContainer.querySelectorAll('.panel__item')
                     activeTabItems.forEach((tab, index) => {
                         tab.onclick = () => {
-                            activeContainer.querySelector('.panel__item.active').classList.remove('active')
+                            activeContainer.querySelector('.panel__item.active')
+                                .classList.remove('active')
 
                             tab.classList.add('active')
                             activePanels[index].classList.add('active')
@@ -203,6 +203,7 @@ const app = {
         // || quantity input start
         const [...qtyInput] = $$('.qty__input')
         if (qtyInput) {
+            const dataQty = $("#data-qty");
             qtyInput.forEach((input, index) => {
                 const minusBtn = input.parentElement.querySelector('.minus__btn')
                 const plusBtn = input.parentElement.querySelector('.plus__btn')
@@ -210,18 +211,29 @@ const app = {
                 const [...cartProduct] = $$('.cart__product')
                 minusBtn.onclick = e => {
                     e.preventDefault()
-                    input.value < 1 ? input.value = 0 : input.value--
-                    subTotal.innerText = `$${input.value * Number(subTotal.parentElement.parentElement.querySelector('.cart__product__price').innerText.split('').slice(1).join(''))}`
-                    this.calculatorCheck(cartProduct, input, index)
+                    input.value <= 1 ? input.value = 1 : input.value--
+                    if (subTotal) {
+                        subTotal.innerText = `$${input.value * Number(subTotal.parentElement.parentElement.querySelector('.cart__product__price').innerText.split('').slice(1).join(''))}`
+                    }
+                    // this.calculatorCheck(cartProduct, input, index)
+                    if (dataQty) {
+                        document.querySelector("#data-qty").value = input.value;
+                    }
                 }
                 plusBtn.onclick = e => {
                     e.preventDefault()
                     input.value++
-                    subTotal.innerText = `$${input.value * Number(subTotal.parentElement.parentElement.querySelector('.cart__product__price').innerText.split('').slice(1).join(''))}`
-                    this.calculatorCheck(cartProduct, input, index)
+                    if (subTotal) {
+                        subTotal.innerText = `$${input.value * Number(subTotal.parentElement.parentElement.querySelector('.cart__product__price').innerText.split('').slice(1).join(''))}`
+                    }
+                    // this.calculatorCheck(cartProduct, input, index)
+                    // || product quatity handler
+                    if (dataQty) {
+                        document.querySelector("#data-qty").value = input.value;
+                    }
                 }
                 input.oninput = () => {
-                    this.calculatorCheck(cartProduct, input, index)
+                    // this.calculatorCheck(cartProduct, input, index)
                 }
             });
         }
@@ -334,12 +346,24 @@ const app = {
                 console.log(productDetailNav.clientX , productDetailNav.clientY)
             })
         }
-        // || user detail nav start
+        // || user detail nav end
 
-
-        // || rotate button start
-        
-        // || rotate button end
+        // || toggle password handler
+        const togglePassword = $('.toggle-password');
+        if (togglePassword) {
+            const ownInput = togglePassword.parentElement.querySelector('.form__input');
+            togglePassword.style.display = 'none';
+            ownInput.addEventListener('input', e => {
+                togglePassword.style.display = 'block';
+            })
+            togglePassword.onclick = () => {
+                if (ownInput.type === 'text') {
+                    ownInput.type = 'password';
+                } else {
+                    ownInput.type = 'text';
+                }
+            }
+        }
     },
     eventSlideHandler(event, toggle, element, duration) {
         if (toggle) {
@@ -429,8 +453,10 @@ const app = {
     choosingOption(options, optionSelector) {
         options.forEach(item => {
             item.onclick = () => {
-                $(`${optionSelector}.active`).classList.remove('active')
-
+                if ($(`${optionSelector}.active`)) {
+                    $(`${optionSelector}.active`).classList.remove('active')
+                }
+                
                 item.classList.toggle('active')
             }
         })

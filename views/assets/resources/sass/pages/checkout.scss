@@ -8,6 +8,7 @@
             flex-direction: column;
         }
         .shipping__options {
+            color: $text-color;
             .shipping__option {
                 padding: 16px 20px;
                 border: 1px solid $input-border-color;

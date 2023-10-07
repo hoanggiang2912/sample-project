@@ -1,52 +1,58 @@
 <?php 
-    // $usernameMessage = $passwordMessage = $emailMessage = '';
-    // if ($errors) {
-    //     $usernameMessage = '<span class="form__message">' . $usernameError . '</span>';
-    //     $passwordMessage = '<span class="form__message">' . $passwordError . '</span>';
-    //     $emailMessage = '<span class="form__message">' . $emailError . '</span>';
-    // }
+    
 ?>
-<h1 class="big-text">sign up</h1>
-<div class="section log-in__body" style="margin-top: 80px;">
-    <div class="form__container">
-        <form action="index.php?pg=createAccount" method="post" class="log-in-form">
-            <h1 class="form__title">TẠO TÀI KHOẢN</h1>
+<!-- || big text start -->
+<h1 class="big-text">account</h1>
+<!-- || big text end -->
+
+<!-- || form section start -->
+<section class="section form__section mt100 p60">
+    <main class="form__wrapper flex-center">
+        <form action="index.php?pg=createAccount" method="post" class="form create-account__form flex-column g30 r8">
+            <h2 class="title form__title">TẠO TÀI KHOẢN</h2>
             <div class="form__group">
-                <input type="text" name="username" class="form__input fullname" placeholder=" ">
-                <label for="">Tên đăng nhập</label>
+                <input type="text" class="form__input userName" name="userName" placeholder=" ">
+                <label for="" class="form__label">Username</label>
                 <span class="form__message"></span>
             </div>
             <div class="form__group">
-                <input type="text" name="email" class="form__input email" placeholder=" ">
-                <label for="">Email</label>
+                <input type="text" class="form__input email" name="email" placeholder=" ">
+                <label for="" class="form__label">Email</label>
                 <span class="form__message"></span>
             </div>
             <div class="form__group">
-                <input type="text" name="password" class="form__input password" placeholder=" ">
-                <label for="">Mật khẩu</label>
+                <input type="text" class="form__input password" name="password" placeholder=" ">
+                <label for="" class="form__label">Password</label>
+                <i class="far fa-eye-slash poa toggle-password"></i>
                 <span class="form__message"></span>
             </div>
             <?=$message?>
-            <input type="submit" name="createAccount" class="form__btn" value="Tạo tài khoản">
+            <input type="submit" name="createAccount" class="btn form__btn primary__btn" value="Tạo tài khoản">
+            <div class="flex-center">
+                <p class="body-text3">Đã có tài khoản? <a href="index.php?pg=login" class="body-text3 underline">Đăng nhập ngay</a></p>
+            </div>
+            <br class="break-line">
+            <div class="flex-column g12">
+                <h4 class="smb tac">Hoặc đăng nhập bằng các cách khác</h4>
+                <ul class="icon__nav flex-center g12">
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa-brands fa-google"></i></a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa-brands fa-facebook"></i></a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa-brands fa-twitter"></i></a></li>
+                    <li class="nav__item"><a href="" class="nav__link"><i class="fa-brands fa-github"></i></a></li>
+                </ul>
+            </div>
         </form>
-        <h5>Bạn cũng có thể đăng nhập bằng các cách sau</h5>
-        <ul class="social__icon__list flex">
-            <li class="nav__item"><i class="fa-brands fa-google"></i></li>
-            <li class="nav__item"><i class="fa-brands fa-facebook"></i></li>
-            <li class="nav__item"><i class="fa-brands fa-github"></i></li>
-            <li class="nav__item"><i class="fa-brands fa-instagram"></i></li>
-            <li class="nav__item"><i class="fa-brands fa-twitter"></i></li>
-        </ul>
-        <h5>Bạn đã có tài khoản ? <a href="index.php?pg=login">Đăng nhập ngay</a></h5>
-    </div>
-</div>
+    </main>
+</section>
+<!-- || form section end -->
 <script>
     Validator({
-        formSelector: '.log-in-form',
+        formSelector: '.create-account__form',
         formGroupSelector: '.form__group',
         formMessage: '.form__message',
         rules: [
-            Validator.isRequired('.fullname'),
+            Validator.isRequired('.userName'),
             Validator.isRequired('.email'),
             Validator.isEmail('.email'),
             Validator.isRequired('.password'),

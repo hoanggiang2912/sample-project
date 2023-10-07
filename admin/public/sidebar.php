@@ -1,34 +1,69 @@
-<div class="sidebar">
-    <div style="
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;" >
-        <a href="../../asm-p2/index.php" class="logo">
-            <img src="./dist/img/logo-full.svg" alt="Typistial logo">
-        </a>
-        <i class="fa-solid fa-bars-sort"></i>
-    </div>
-    <nav class="sidebar__nav administrator__nav">
-        <ul>
-            <li class="nav__item active" style="background: rgba(0, 194, 255, 0.40)"><a
-                    href="index.php?pg=dashboard" class="nav__link"><i class="fa-solid fa-chart-simple"
-                        style="color: #00C2FF;"></i> Dashboard</a></li>
-            <li class="nav__item"><a href="index.php?pg=message" class="nav__link"><i class="fa-solid fa-envelope"></i> Messages</a></li>
-            <li class="nav__item"><a href="index.php?pg=user" class="nav__link"><i
-                        class="fa-solid fa-users"></i> Customers</a></li>
-            <li class="nav__item"><a href="index.php?pg=order" class="nav__link"><i class="fa-solid fa-box"></i>Orders</a></li>
-            <li class="nav__item"><a href="index.php?pg=category" class="nav__link"><i class="fa-solid fa-box"></i>Categories</a></li>
-            <li class="nav__item"><a href="index.php?pg=product" class="nav__link"><i class="fa-solid fa-box"></i>Products</a></li>
-        </ul>
+<div class="admin__sidebar flex-column g30 p30">
+    <a href="index.php" class="logo flex-center">
+        <img src="../views/assets/images/logo.svg" alt=""><span class="logo__text">typistial</span>
+    </a>
+    <nav class="admin-sidebar__nav">
+        <li class="nav__item sidebar-nav__item r6">
+            <a href="index.php?pg=dashboard" class="nav__link sidebar-nav__link row g12 p20 md">
+                <i class="fa-solid fa-chart-simple sidebar-nav__icon"></i>
+                Dashboard
+            </a>
+        </li>
+        <li class="nav__item sidebar-nav__item r6">
+            <a href="index.php?pg=category" class="nav__link sidebar-nav__link row g12 p20 md">
+                <i class="fa-solid fa-list sidebar-nav__icon"></i>
+                Categories
+            </a>
+        </li>
+        <li class="nav__item sidebar-nav__item r6">
+            <a href="index.php?pg=products" class="nav__link sidebar-nav__link row g12 p20 md">
+                <i class="fas fa-box sidebar-nav__icon"></i>
+                Products
+            </a>
+        </li>
+        <li class="nav__item sidebar-nav__item r6">
+            <a href="index.php?pg=comments" class="nav__link sidebar-nav__link row g12 p20 md">
+                <i class="fas fa-comment-alt sidebar-nav__icon"></i>
+                Comments
+            </a>
+        </li>
+        <li class="nav__item sidebar-nav__item r6">
+            <a href="#" class="nav__link sidebar-nav__link row g12 p20 md">
+                <i class="fa-solid fa-envelope sidebar-nav__icon"></i>
+                Messages
+            </a>
+        </li>
+        <li class="nav__item sidebar-nav__item r6">
+            <a href="index.php?pg=orders" class="nav__link sidebar-nav__link row g12 p20 md">
+                <i class="fas fa-archive sidebar-nav__icon"></i>
+                Orders
+            </a>
+        </li>
+        <li class="nav__item sidebar-nav__item r6">
+            <a href="index.php?pg=customers" class="nav__link sidebar-nav__link row g12 p20 md">
+                <i class="fas fa-user sidebar-nav__icon"></i>
+                Customers
+            </a>
+        </li>
     </nav>
-    <nav class="sidebar__nav setting__nav">
-        <ul>
-            <li class="nav__item"><a href="" class="nav__link"><i class="fa-solid fa-user-pen"></i> Roles</a></li>
-            <li class="nav__item"><a href="" class="nav__link"><i class="fa-solid fa-arrow-right-arrow-left"></i>
-                    Requests</a></li>
-            <li class="nav__item"><a href="" class="nav__link"><i class="fa-solid fa-gear"></i> Preferences</a></li>
-        </ul>
+    <nav class="admin-sidebar__nav">
+        <li class="nav__item sidebar-nav__item r6">
+            <a href="#" class="nav__link sidebar-nav__link row g12 p20 md">
+                <i class="fas fa-user-edit sidebar-nav__icon"></i>
+                Roles
+            </a>
+        </li>
+        <li class="nav__item sidebar-nav__item r6">
+            <a href="#" class="nav__link sidebar-nav__link row g12 p20 md">
+                <i class="fas fa-repeat sidebar-nav__icon"></i>
+                Requests
+            </a>
+        </li>
+        <li class="nav__item sidebar-nav__item r6">
+            <a href="#" class="nav__link sidebar-nav__link row g12 p20 md">
+                <i class="fa-solid fa-gear sidebar-nav__icon"></i>
+                Setting
+            </a>
+        </li>
     </nav>
-    <li class="nav__item warning"><a href="<?= "index.php?pg=logout" ?>" class="nav__link cancelled"><i class="fa-solid fa-arrow-right-from-bracket warning"></i> Log out</a></li>
 </div>

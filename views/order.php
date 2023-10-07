@@ -1,188 +1,200 @@
 <?php 
-    // showing cart
-    $product_html = '';
-    $total = 0;
-    foreach ($cart as $item) {
-        extract($item);
-        $subTotal = $price * $qty;
-        $total += $subTotal;  
-        $path = "./views/layout/assets/images/$img";
-        $product_html .= '
-            <div class="summary__product flex">
-                <div class="flex" style="gap: 8px">
-                    <div class="summary__product__banner" style="background: url('.$path.') no-repeat center center / cover;">
-                    </div>
-                    <div>
-                        <div class="summary__product__name">
-                            '.$name.'
-                        </div>
-                        <div class="product__option flex">
-                            <span></span>
-                            <span><span>
-                        </div>
-                    </div>
-                </div>
-                <div style="display: flex; flex-direction: column; align-self: stretch; justify-content: space-between; align-items: end">
-                    <div class="product__price">$
-                        '.$price.'
-                    </div>
-                    <div class="qty">x '.$qty.'</div>
-                </div>
-            </div>
-        ';
+    // require_once 'orderValidate.php';    
+    if (isset($_SESSION['cart']) && !empty($_SESSION['cart']))  {
+        $total = 0;
+        foreach ($_SESSION['cart'] as $item) {
+            extract($item);
+            $total += $qty * $price;
+        }
     }
-
-    
+    // print_r($_SESSION['user']);
 ?>
 
-<!-- main section -->
-<main class="section checkout-main-section">
-    <!-- payment nav start -->
-    <?php
-    require_once 'paymentNav.php';
+<script>
+    jQuery(document).ready(() => {
+        jQuery('.checkout__form').submit(function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            const country = jQuery('#country').val()
+            const address = jQuery('#address').val()
+            const email = jQuery('#email').val()
+            const tel = jQuery('#tel').val()
+            const shipping = jQuery('input[name="shipping"]:checked').val()
+            const submit = jQuery('#submit').val();
+
+            // Check if a shipping method is selected
+            if (typeof shipping === 'undefined') {
+                // Display an error message or take appropriate action
+                jQuery('#error-check').html('<span class="error">Please select a shipping method</span>');
+                return; // Exit the function without making the AJAX request
+            }
+
+            // Perform AJAX request to validate the form data
+            jQuery.ajax({
+                type: 'POST',
+                url: 'http://localhost/sample-project/views/orderValidate.php',
+                data: {
+                    country: country,
+                    address: address,
+                    email: email,
+                    tel: tel,
+                    shipping: shipping,
+                    submit: submit
+                }
+            }).done(function (response) {
+                // Check if the server returned success
+                if (response.success) {
+                    // Display a success message
+                    console.log('Success:', response.message);
+
+                    // Redirect the user if needed
+                    if (response.redirect) {
+                        window.location.href = response.redirect;
+                    }
+                } else {
+                    // Display an error message
+                    console.error('Error:', response.message);
+                    console.log(response);
+                }
+            }).fail(function (xhr, status, error) {
+                // This function will be executed when the AJAX request fails
+                console.error('AJAX Error:', error, status, xhr);
+            });
+        });
+    })
+</script>
+
+
+<section class="section checkout-main__section">
+    
+    <!-- cart nav start -->
+    <?php 
+        require_once 'paymentNav.php';
     ?>
-    <!-- payment nav end -->
-    <form action="index.php?pg=order" method="post" id="checkout__form">
-        <div class="checkout__wrapper flex" style="flex-wrap: wrap-reverse">
-            <div class="checkout__form__wrapper">
-                <div class="checkout__form">
-                    <h4 for="" class="cart__form__title">Chọn quốc gia<span class="required">*</span></h4>
-                    <div class="form__group country__options">
-                        <select name="country" id="country" class="form__select">
-                            <option value="vn" selected>Việt Nam</option>
-                            <option value="china" disabled>Trung Quốc</option>
-                            <option value="canada" disabled>Canada</option>
-                            <option value="us" disabled>Mỹ</option>
-                            <option value="kor" disabled>Hàn Quốc</option>
-                        </select>
-                    </div>
-                    <hr style="margin-block: 30px">
-                    <h4 class="cart__form__title" style="margin-bottom: 18px;">Địa chỉ giao dịch</h4>
-                    <div class="form__group">
-                        <label for="" class="cart__form__label">Địa chỉ<span class="required">*</span></label>
-                        <input type="text" name="address" id="address" class="form__input" placeholder="Nhập địa chỉ giao hàng">
-                        <p class="form__message"></p>
-                    </div>
-                    <div class="form__group">
-                        <label for="" class="cart__form__label">Email<span class="required">*</span></label>
-                        <input type="text" id="email" name="email" class="form__input" placeholder="Nhập email của bạn">
-                        <p class="form__message"></p>
-                    </div>
-                    <div class="form__group">
-                        <label for="" class="cart__form__label">Số điện thoại<span class="required">*</span></label>
-                        <input type="text" name="tel" id="tel" class="form__input" placeholder="Nhập số điện thoại của bạn">
-                        <p class="form__message"></p>
-                    </div>
-                    <div class="form__group">
-                        <label for="" class="cart__form__label">Nhập tên đường và số nhà<span class="required">*</span></label>
-                        <input type="text" name="road-home" id="road" class="form__input" placeholder="Nhập tên đường / số nhà">
-                        <p class="form__message"></p>
-                    </div>
-                    <div class="flex" style="flex-wrap: wrap">
-                        <div class="form__group">
-                            <label for="" class="cart__form__label">Chọn thành phố / tỉnh<span class="required">*</span></label>
-                            <select name="city" id="" class="form__select">
-                                <option value="tphcm" selected>TP.HCM</option>
-                            </select>
-                        </div>
-                        <div class="form__group">
-                            <label for="" class="cart__form__label">Chọn quận / huyện<span class="required">*</span></label>
-                            <select name="ward" id="" class="form__select">
-                                <option value="tanbinh" selected>Tân Bình</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form__group">
-                        <h2 class="cart__form__label">Phương thức vận chuyển</h2>
-                        <div class="shipping__options">
-                            <label for="0" class="shipping__option">
-                                <div class="flex" style="gap: 12px">
-                                    <i class="fa-regular fa-circle option-btn"></i>
-                                    <i class="fa-regular fa-circle-check option-btn"></i>
-                                    <div>
-                                        <h5 class="option__name">Miễn phí</h5>
-                                        <p>7 - 30 ngày (tùy quốc gia)</p>
-                                    </div>
-                                </div>
-                                <p class="shipping__price">$0</p>
-                            </label>
-                            <label for="1" class="shipping__option active">
-                                <div class="flex" style="gap: 12px">
-                                    <i class="fa-regular fa-circle-check option-btn"></i>
-                                    <i class="fa-regular fa-circle option-btn"></i>
-                                    <div>
-                                        <h5 class="option__name">Thông thường</h5>
-                                        <p>3 - 14 ngày (tùy quốc gia)</p>
-                                    </div>
-                                </div>
-                                <p class="shipping__price">$11</p>
-                            </label>
-                            <label for="2" class="shipping__option">
-                                <div class="flex" style="gap: 12px">
-                                    <i class="fa-regular fa-circle option-btn"></i>
-                                    <i class="fa-regular fa-circle-check option-btn"></i>
-                                    <div>
-                                        <h5 class="option__name">Hỏa tốc</h5>
-                                        <p>1 - 3 ngày (tùy quốc gia)</p>
-                                    </div>
-                                </div>
-                                <p class="shipping__price">$19</p>
-                            </label>
-                            <input type="radio" name="shipping" id="1" value="1" hidden>
-                            <input type="radio" name="shipping" id="2" value="2" hidden checked>
-                            <input type="radio" name="shipping" id="3" value="0" hidden>
-                        </div>
-                    </div>
-                </div>
+    <!-- cart nav end -->
+
+    <form action="index.php?pg=order" method="post" class="bill-info__form checkout__form full row mt20">
+        <main class="bill-info__body checkout-main__body r12 p20 flex-column flex-full g20">
+            <div class="form__group">
+                <label for="" class="form__label">Chọn quốc gia</label>
+                <select name="country" id="country" class="form__input">
+                    <option value="1" selected>VietNam</option>
+                    <option value="2">USA</option>
+                    <option value="3">England</option>
+                </select>
+                <span class="form__message"></span>
             </div>
-            <div class="checkout__summary">
-                <div class="summary__product__wrapper">
-                    <!-- single product start -->
-                    <?= $product_html?>
-                    <!-- single product end -->
-                </div>
-                <div class="summary__coupon">
-                    <h4 class="coupon__title">Mã giảm giá</h4>
-                    <div class="form__group">
-                        <input class="form__input" type="text" placeholder="Nhập mã giảm giá ">
-                        <button class="form__btn">Áp dụng</button>
+            <hr class="break-line">
+            <label class="form__label">Địa chỉ đặt hàng</label>
+            <div class="form__group">
+                <label for="" class="form__label">
+                    Địa chỉ <span class="required">*</span>
+                </label>
+                <input type="text" name="address" id="address" class="form__input">
+                <span class="form__message"></span>
+            </div>
+            <div class="form__group">
+                <label for="" class="form__label">Email <span class="required">*</span></label>
+                <input type="text" class="form__input" id="email" name="email">
+                <span class="form__message"></span>
+            </div>
+            <div class="form__group">
+                <label for="" class="form__label">Số điện thoại <span class="required">*</span></label>
+                <input type="text" class="form__input" id="tel" name="tel">
+                <span class="form__message"></span>
+            </div>
+            <hr class="break-line">
+            <div class="shipping__options r8 flex-column g12">
+                <label for="" class="form__label">Phương thức vận chuyển <span class="required">*</span></label>
+                <label for="free" class="shipping__option flex-between">
+                    <div class="row g12">
+                        <i class="fa-regular fa-circle option__btn"></i>
+                        <i class="fa-regular fa-circle-check option__btn"></i>
+                        <div>
+                            <h5 class="option__name">Miễn phí</h5>
+                            <p>7 - 30 ngày (tùy quốc gia)</p>
+                        </div>
                     </div>
-                    <!-- <p class="call-to-action">Bạn là khác hàng mới ? <a class="hightlight__text">Đăng ký</a> ngay để nhận
-                        giá tốt hơn</p> -->
-                </div>
-                <span class="toggle__detail">See more detail</span>
-                <div class="summary__detail">
-                    <div class="detail__item">
-                        <h5 class="detail__title">Tiền sản phẩm</h5>
-                        <p class="detail__cost" style="color: #050728; font-weight: 800;">$165.00</p>
+                    <p class="shipping__price">$0</p>
+                </label>
+                <label for="standard" class="shipping__option flex-between">
+                    <div class="row g12">
+                        <i class="fa-regular fa-circle-check option__btn"></i>
+                        <i class="fa-regular fa-circle option__btn"></i>
+                        <div>
+                            <h5 class="option__name">Thông thường</h5>
+                            <p>3 - 14 ngày (tùy quốc gia)</p>
+                        </div>
                     </div>
-                    <div class="detail__item">
-                        <h5 class="detail__title">Giảm giá</h5>
-                        <p class="detail__cost">$0</p>
+                    <p class="shipping__price">$11</p>
+                </label>
+                <label for="fast" class="shipping__option flex-between">
+                    <div class="row g12">
+                        <i class="fa-regular fa-circle option__btn"></i>
+                        <i class="fa-regular fa-circle-check option__btn"></i>
+                        <div>
+                            <h5 class="option__name">Hỏa tốc</h5>
+                            <p>1 - 3 ngày (tùy quốc gia)</p>
+                        </div>
                     </div>
+                    <p class="shipping__price">$19</p>
+                </label>
+                <input type="radio" hidden id="free" name="shipping" value="1">
+                <input type="radio" hidden id="standard" name="shipping" value="2">
+                <input type="radio" hidden id="fast" name="shipping" value="3">
+            </div> 
+        </main>
+        <div class="cart-summary flex-full">
+            <div class="cart-summary__inner flex-column g20 p20 r8 flex-full">
+                <!-- single cart summary product start -->
+                <?= renderSummaryProduct($cart) ?>
+                <!-- single cart summary product end -->
+                <div class="toggle-detail underline">Xem chi tiết</div>
+                <div class="cart-summary__detail flex-column g20">
+                    <div class="product__voucher form__group">
+                        <label for="" class="form__label">Nhập mã giảm giá để nhận ưu đãi</label>
+                        <div class="flex-between row g6 mt12">
+                            <input type="text" class="form__input flex-full" placeholder="Mã giảm giá">
+                            <span class="form__message"></span>
+                            <button class="btn outline__btn apply__btn">Áp dụng</button>
+                        </div>
+                    </div>
+                    <div class="flex-between">
+                        <span class="smb text">Tiền sản phẩm</span>
+                        <span class="smb text product__price">$<?= $total ?></span>
+                    </div>
+                    <div class="flex-between">
+                        <span class="smb text">Giảm giá</span>
+                        <span class="smb text sale">-$0</span>
+                    </div>
+                    <!-- <div class="flex-between">
+                        <span class="smb text">Phí vận chuyển</span>
+                        <span class="smb text shipping-fee">$11</span>
+                    </div> -->
                 </div>
-                <hr style="margin-block: 12px; border: none; height: 1px; background: rgba(0, 0, 0, 0.1)">
-                <div class="checkout__summary__total detail__item">
-                    <h4 class="detail__title" style="font-size: 18px;">Tổng tiền</h4>
-                    <p class="detail__cost" style="color: #050728; font-weight: 800; font-size: 18px">$<?= $total?></p>
+                <hr class="break-line">
+                <div class="flex-between">
+                    <span class="smb body-text1">Tổng tiền</span>
+                    <span class="smb body-text1 total">$<?= $total ?></span>
                 </div>
-                <?= $message ?>
-                <button type="submit" name="userOrder" class="form__btn">Tiếp tục</button>
+                <span class="form__message" id="error-check"></span>
+                <button class="form__btn btn primary__btn" id="submit" type="submit" name="submit">Đi đến thanh toán</button>
             </div>
         </div>
     </form>
-</main>
+</section>
 <script>
     Validator({
-        formSelector: '#checkout__form',
+        formSelector: '.checkout__form',
         formGroupSelector: '.form__group',
         formMessage: '.form__message',
         rules: [
             Validator.isRequired('#email') , 
-            Validator.isRequired('#road') , 
-            Validator.isRequired('#address') , 
-            Validator.isRequired('#tel') , 
             Validator.isEmail('#email') , 
+            Validator.isRequired('#address') , 
+            Validator.isRequired('#tel'),
+            Validator.isPhone('#tel')
         ]
     })
 </script>

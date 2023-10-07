@@ -99,7 +99,7 @@ Validator.isPhone = (selector , message) => {
     return {
         selector,
         test (value) {
-            const regex = /^\d{10}$/
+            const regex = /^(0[2|3|5|6|7|8|9])+([0-9]{8})$/;
             return regex.test(value) ? undefined : message || 'Your phone number is invalid' 
         }
     }

@@ -1,11 +1,14 @@
 .cart__section {
     .cart-product__wrapper {
         width: 70%;
-        padding-inline: clamp(1rem, -0.429rem + 3.81vw, 3rem);
+        padding: clamp(1rem, -0.429rem + 3.81vw, 3rem);
         box-shadow: $box-shadow;
         background: $common-color;
         align-self: stretch;
-        position: relative;
+        // position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         .cart__product {
             padding-block: 16px;
             .cart-product__banner {
@@ -36,11 +39,6 @@
             }
         }
         .cart-empty__announce {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
             display:flex;
             align-items:center;
             justify-content:center;

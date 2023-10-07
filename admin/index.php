@@ -18,15 +18,19 @@
             switch ($_GET['pg']) {
                 case 'logout':
                     unset($_SESSION['admin']);
-                    header('Location: login.php');
+                    header('Location: ../index.php?pg=login');
                     break;
                 case 'user':
                     
                     break;
+                case 'products':
+                    $productList = getAllProduct();
+                    require_once './public/product.php';
+                    break;
                 case 'productSearch':
                     $categories = [];
                     $productList = [];
-                    if(isset($_POST['search'])) {
+                    if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $query = $_POST['query'];
                         $productList = getProductByQuery($query);
                     }
@@ -35,7 +39,7 @@
                 case 'cateSearch':
                     $tb = "";
                     $categories = [];
-                    if(isset($_POST['search'])) {
+                    if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $query = $_POST['query'];
                         $categories = getCatalogByQuery($query);
                     }
@@ -43,26 +47,27 @@
                     break;
                 case 'category':
                     $tb = "";
-                    $categories = getCatalog();
+                    $categories = getCatalogs();
                     require_once './public/category.php';
                     break;
                 case 'addCategory':
                     // add new category from form
-                    if (isset($_POST['insert__btn'])) {
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         $name = $_POST['name'];
                         insertCategory($name);
+                        header("Location: index.php?pg=category");
                     }
                     // reload category
                     $tb = "";
                     $categories = getCatalogs();
-                    require_once './public/category.php';
+                    require_once './public/addNewCategory.php';
                     break;
                 case 'updateCategoryForm':
                     // add new category from form
                     if (isset($_GET['cateId'])) {
                         $cateId = $_GET['cateId'];
                         $catalog = getCatalogById($cateId);
-                        if (isset($_POST['update__btn'])) {
+                        if (isset($_POST['categoryUpdate'])) {
                             $name = $_POST['name'];
                             updateCatalog($name , $cateId);
                             header('Location: index.php?pg=category');
@@ -146,10 +151,13 @@
                             updateProductById ($productId , $name , $categoryOption , $price , $amount , $promotion , $description , $detail);
                             header("Location: index.php?pg=product");
                         }
+                        if (isset($_POST['unsave'])) {
+                            header("Location: index.php?pg=updateProductForm&Id=$id");
+                        }
                     }
                     require_once './public/updateProductForm.php';
                     break;
-                case 'order':
+                case 'orders':
                     require_once './public/order.php';
                     break;
                 default:

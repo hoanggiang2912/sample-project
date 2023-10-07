@@ -33,118 +33,102 @@
     }
 ?>
 
-<div class="container admin-page">
-    <?php
-    require_once 'sidebar.php';
+<div class="container-full admin__container flex">
+    <?php 
+        require_once 'sidebar.php';
     ?>
-    <div class="admin-page__body">
-        <div class="admin-main__panel">
-            <div class="panel__content" style="padding: 0;">
-                <form action="index.php?pg=updateProductForm&Id=<?=$id?>" method="post" class="add-product__form">
-                    <h2 class="title">Product update</h2>
-                    <div class="form__group">
-                        <input type="text" name="name" placeholder="Tên sản phẩm" value="<?=$name?>">
+    <main class="admin__panel p20 flex-column flex-full g20">
+        <h4 class="heading-4">Product update</h4>
+        <div class="admin-form__wrapper">
+            <form action="" method="post" class="form admin__form add-product__form flex-column g20 p20 r12 common-box">
+                <div class="form__group flex-full flex-column">
+                    <h4 class="smb mb6">Product name:</h4>
+                    <input type="text" class="form__input" name="name" placeholder="Tên sản phẩm" value="<?=$name?>">
+                    <span class="form__message"></span>
+                </div>
+                <div class="form__group flex-full flex-column">
+                    <h4 class="smb mb6">Category:</h4>
+                    <select name="categoryOption" id="category" class="form__input">
+                        <option value="0" class="form__option">Chọn danh mục</option>
+                        <?=renderOption($catalogs , $id_catalog)?>
+                    </select>
+                    <span class="form__message"></span>
+                </div>
+                <div class="form__group flex-full flex-column">
+                    <h4 class="smb mb6">Price:</h4>
+                    <input type="text" class="form__input" name="price" placeholder="Đơn giá" value="<?=$price?>">
+                    <span class="form__message"></span>
+                </div>
+                <div class="flex-full row g12">
+                    <div class="form__group flex-full flex-column">
+                        <h4 class="smb mb6">Amount:</h4>
+                        <input type="text" name="amount" class="form__input" placeholder="Amount" value="<?=$amount?>">
+                        <span class="form__message"></span>
                     </div>
-                    <div class="form__group">
-                        <select name="categoryOption" id="categoriesOption">
-                            <!-- render categories options start -->
-                            <?= renderOption($catalogs , $id_catalog)?>
-                            <!-- render categories options end -->
-                        </select>
+                    <div class="form__group flex-full flex-column">
+                        <h4 class="smb mb6">Promotion:</h4>
+                        <input type="text" name="promotion" class="form__input" placeholder="Promotion" value="<?= $promotion ?>">
+                        <span class="form__message"></span> 
                     </div>
-                    <div class="form__group">
-                        <input type="text" placeholder="Đơn giá" name="price" value="<?= $price ?>">
-                        <input type="text" placeholder="Số lượng" name="amount" value="<?= $amount ?>">
-                    </div>
-                    <div class="form__group">
-                        <input type="text" name="promotion" placeholder="Giảm __%" value="<?= $promotion ?>">
-                    </div>
-                    <div class="form__group__wrapper">
-                        <div class="form__group image-upload">
-                            <label for="image-upload" class="flex"
-                                style="justify-content: space-between; width: 100%; cursor: pointer;">
-                                <h2>Ảnh</h2>
-                                <label for="image-upload" class="form__label">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
-                                        fill="none">
-                                        <path
-                                            d="M10.125 2.25V12.75M10.125 2.25L13.375 5.25M10.125 2.25L6.875 5.25M18.375 14.25V16.75C18.375 17.8546 17.4796 18.75 16.375 18.75H3.875C2.77043 18.75 1.875 17.8546 1.875 16.75V14.25"
-                                            stroke="black" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg>
-                                </label>
-                                <input type="file" multiple id="image-upload" hidden style="display: none">
-                            </label>
-                        </div>
-                        <div class="image-upload__panel">
-                            <div class="image-uploaded__wrapper">
-                                <div class="image__frame">
-                                    <img src="" alt="">
-                                    <a class="delete__btn"><i class="fal fa-times"></i></a>
-                                </div>
-                                <div class="image__frame">
-                                    <img src="" alt="">
-                                    <a class="delete__btn"><i class="fal fa-times"></i></a>
-                                </div>
-                                <div class="image__frame">
-                                    <img src="" alt="">
-                                    <a class="delete__btn"><i class="fal fa-times"></i></a>
-                                </div>
-                                <div class="image__frame">
-                                    <img src="" alt="">
-                                    <a class="delete__btn"><i class="fal fa-times"></i></a>
-                                </div>
-                                <div class="image__frame">
-                                    <img src="" alt="">
-                                    <a class="delete__btn"><i class="fal fa-times"></i></a>
-                                </div>
+                </div>
+                <div class="form__group flex-full flex-column g12 image-uploader">
+                    <label for="imageUpload" class="form__input flex-between" style="display: flex">
+                        <span>Upload images</span>
+                        <i class="fal fa-arrow-to-top"></i>
+                    </label>
+                    <input type="file" multiple hidden id="imageUpload">
+                    <div class="image-uploader--panel p12 r8 common-box flex-column">
+                        <div class="img__box row g12">
+                            <div class="img__box--item">
+                                <img src="/app/views/assets/images/banner2.webp" alt="">
+                                <a href="" class="delete__btn poa"><i class="fal fa-times"></i></a>
                             </div>
-                            <span class="user__note">Tối đa 10 ảnh <span class="warning">*</span></span>
-                            <div class="buttons-set">
-                                <button class="delete-all__btn"><i class="fal fa-file-times"></i> Xóa tất cả</button>
-                                <button class="upload__btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                                        fill="none">
-                                        <path
-                                            d="M10 1.75V12.25M10 1.75L13.25 4.75M10 1.75L6.75 4.75M18.25 13.75V16.25C18.25 17.3546 17.3546 18.25 16.25 18.25H3.75C2.64543 18.25 1.75 17.3546 1.75 16.25V13.75"
-                                            stroke="#00C2FF" stroke-width="1.5" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg>
-                                    Tải lên
-                                </button>
+                            <div class="img__box--item">
+                                <img src="/app/views/assets/images/banner2.webp" alt="">
+                                <a href="" class="delete__btn poa"><i class="fal fa-times"></i></a>
+                            </div>
+                            <div class="img__box--item">
+                                <img src="/app/views/assets/images/banner2.webp" alt="">
+                                <a href="" class="delete__btn poa"><i class="fal fa-times"></i></a>
+                            </div>
+                            <div class="img__box--item">
+                                <img src="/app/views/assets/images/banner2.webp" alt="">
+                                <a href="" class="delete__btn poa"><i class="fal fa-times"></i></a>
                             </div>
                         </div>
-                    </div>
-                    <div class="form__group__wrapper">
-                        <div class="form__group product-option">
-                            <h2>Lựa chọn</h2>
-                        </div>
-                        <div class="option-list__wrapper">
-                            <ul class="option__list">
-                                <!-- render product option start -->
-                                <?=renderProductOption($productOptions)?>
-                                <!-- render product option end -->
-                            </ul>
-                            <a href="" class="add-option__btn"><i class="fal fa-plus"></i> Thêm lựa chọn</a>
+                        <span class="body-text3 mt12"><span class="required">*</span> Tối đa 10 ảnh</span>
+                        <div class="flex flex-full g12 j-end uploader__btns">
+                            <button class="btn alert__btn">
+                                <i class="fal fa-file-times"></i>
+                                Xóa tất cả 
+                            </button>
+                            <button class="btn primary__btn">
+                                <i class="fal fa-arrow-to-top"></i>
+                                Tải lên
+                            </button>
                         </div>
                     </div>
-                    <div class="form__group">
-                        <textarea name="desc" id="" cols="30" rows="10" placeholder="Mô tả ngắn - 255 ký tự" value="<?=$description?>"></textarea>
-                    </div>
-                    <div class="form__group">
-                        <textarea name="detail" id="" cols="30" rows="20"
-                            placeholder="Mô tả chi tiết - 1024 ký tự"></textarea>
-                    </div>
-                    <div class="form__group" style="box-shadow: none; justify-content: end;">
-                        <div class="buttons-set" style="align-self: stretch; width: 50%">
-                            <button type="submit" class="form__btn delete-form-data__btn"><i
-                                    class="fal fa-times"></i> Hủy</button>
-                            <button type="submit" name="updateProduct" class="form__btn submit-form__btn"> <span><i class="fal fa-save"></i>
-                                    Lưu chỉnh sửa</span></button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="form__group flex-column g12">
+                    <input class="form__input" placeholder="Lựa chọn 1">
+                    <input class="form__input" placeholder="Lựa chọn 2">
+                    <input class="form__input" placeholder="Lựa chọn 3">
+                    <button class="btn addNewOption__btn flex-full">
+                        <i class="fal fa-plus"></i>
+                        Thêm lựa chọn
+                    </button>
+                </div>
+                <div class="form__group">
+                    <textarea name="description" id="" cols="30" rows="10" class="form__input" placeholder="Mô tả ngắn / 255"></textarea>
+                </div>
+                <div class="form__group">
+                    <textarea name="detail" id="" cols="30" rows="15" class="form__input" placeholder="Chi tiết / 1024"></textarea>
+                </div>
+                <div class="form-btn__group flex g12 flex-full j-end">
+                    <input type="submit" name="unsave" class="btn form__btn alert__btn" value="Hủy thay đổi">
+                    <input type="submit" name="updateProduct" class="btn form__btn primary__btn" value="Lưu thay đổi">
+                </div>
+            </form>
         </div>
-    </div>
+    </main>
 </div>

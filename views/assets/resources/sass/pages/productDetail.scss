@@ -1,6 +1,6 @@
 // || product detail section start
 .product-detail-section {
-    padding-inline: clamp(1rem, -0.25rem + 3.333vw, 2.75rem);
+    padding-inline: clamp(1.2rem, -12.229rem + 35.81vw, 20rem) !important;
     .detail__wrapper {
         .detail__gallery {
             aspect-ratio: 1;
@@ -110,7 +110,7 @@
         }
         .description__title {
             color: $text-color;
-            font-size: 2.2rem;
+            font-size: clamp(1.6rem, 1.171rem + 1.143vw, 2.2rem);
             font-weight: $fw-b;
             text-align: center;
             margin-bottom: 1.2rem;
@@ -126,7 +126,57 @@
 
 // || customer review section start
 
+.message-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba($color: $text-color, $alpha: .5);
+    opacity: 0;
+    visibility: hidden;
+    transition: $boucing-trans;
+    transform: translateY(-100%);
+    .log-in__form {
+        max-width: 40rem;
+        transition: $boucing-trans;
+        .form__group,
+        .form__input {
+            width: 100%;
+        }
+        .form__label {
+            margin-bottom: 0.8rem;
+        }
+    }
+}
+.message-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
 .customer-review__section {
+    .comment__form {
+        .form__group {
+            border-bottom: 1px solid transparent;
+            &:hover {
+                border-bottom: 1px solid $input-border-color;
+            }
+            &:focus {
+                border-bottom: 2px solid $input-border-color !important;
+            }
+            .send__btn {
+                &:hover {
+                    color: $active-label-color;
+                }
+            }
+            .form__input {
+                border-color: transparent !important;
+                padding-inline-start: 0;
+        
+                &:hover,
+                &:focus {
+                    box-shadow: none !important;
+                }
+            }
+        }
+    }
     .customer__reviews {
         .customer-review__item {
             .avt {
@@ -149,6 +199,9 @@
                     align-items: flex-start;
                     gap: 10px;
                     color: $common-color;
+                }
+                .stars {
+                    color: $accent-color;
                 }
             }
             .customer__review__pictures {

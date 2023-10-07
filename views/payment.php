@@ -1,244 +1,304 @@
-<?php
-// showing cart
-    $product_html = '';
-    $cart = $_SESSION['cart'];  
-    $total = 0;
-    foreach ($cart as $item) {
-        extract($item);
-        $subTotal = $price * $qty;
-        $total += $subTotal;
-        $path = "./views/layout/assets/images/$img";
-        $product_html .= '
-            <div class="summary__product flex">
-                <div class="flex" style="gap: 8px">
-                    <div class="summary__product__banner" style="background: url(' . $path . ') no-repeat center center / cover;">
-                    </div>
-                    <div>
-                        <div class="summary__product__name">
-                            ' . $name . '
-                        </div>
-                        <div class="product__option flex">
-                            <span></span>
-                            <span><span>
-                        </div>
-                    </div>
-                </div>
-                <div style="display: flex; flex-direction: column; align-self: stretch; justify-content: space-between; align-items: end">
-                    <div class="product__price">$
-                        ' . $price . '
-                    </div>
-                    <div class="qty">x ' . $qty . '</div>
-                </div>
-            </div>
-        ';
+
+<?php 
+    if (isset($_POST['shippingAddress']) && $_POST['shippingAddress']) {
+        $label = '<i class="fa-regular fa-circle-check option-btn primary-text"></i>';
+    } else { 
+        $label = '<i class="fa-regular fa-circle-check option-btn text"></i>';
     }
 
-    
+    if (isset($_SESSION['cart'])) {
+        $total = 0;
+        foreach ($_SESSION['cart'] as $item) {
+            extract($item);
+            $total += $qty * $price;
+        }
+    }
 ?>
 
-<section class="section checkout-main-section">
+<script>
+    jQuery(document).ready(() => {
+        console.log(jQuery('input[name="paymentMethod"]:checked').val());
+        jQuery('.bill-info__form').submit(function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            const country = jQuery('#country').val()
+            const fullname = jQuery('#fullname').val()
+            const address = jQuery('#address').val()
+            const email = jQuery('#email').val()
+            const tel = jQuery('#tel').val()
+            const paymentMethod = jQuery('input[name="paymentMethod"]:checked').val()
+            const submit = jQuery('#submit').val();
+
+            // Perform AJAX request to validate the form data
+            jQuery.ajax({
+                type: 'POST',
+                url: 'http://localhost/sample-project/views/paymentValidate.php?billId=<?= $billId ?>',
+                data: {
+                    country: country,
+                    fullname: fullname,
+                    paymentMethod: paymentMethod,
+                    address: address,
+                    email: email,
+                    tel: tel,
+                    submit: submit
+                }
+            }).done(function (response) {
+                // Check if the server returned success
+                if (response.success) {
+                    // Display a success message
+                    console.log('Success:', response.message);
+
+                    // Redirect the user if needed
+                    if (response.redirect) {
+                        window.location.href = response.redirect;
+                    }
+                } else {
+                    // Display an error message
+                    console.error('Error:', response.message);
+                    jQuery('#error-check').html(response.message);
+                }
+            }).fail(function (xhr, status, error) {
+                // This function will be executed when the AJAX request fails
+                console.error('AJAX Error:', error, status, xhr);
+            });
+        });
+    })
+</script>
+
+<section class="section checkout-main__section">
+            
+    <!-- cart nav start -->
     <?php 
         require_once 'paymentNav.php';
     ?>
-    <form action="index.php?pg=payment&billId=<?= $billId ?>" method="post">
-        <h4 class="cart__form__title" style="margin-bottom: 18px;">Địa chỉ đơn hàng</h4>
-        <div class="form__group">
-            <i class="fa-regular fa-circle-check option-btn"></i>
-            <input type="submit" hidden name="shippingAddress" id="shippingAddress">
-            <label for="shippingAddress">Địa chỉ giống với địa chỉ vận chuyển</label>
+    <!-- cart nav end -->
+    <form action="index.php?pg=payment&billId=<?= $billId ?>" method="post" class="bill-info__form">
+        <div class="bill-info__body common-box r8 p20 flex-column g12 full" style="width: 100%;">
+            <label class="form__label">Địa chỉ giao hàng</label>
+            <div class="flex v-center start g6">
+                <?= $label ?>
+                <!-- <input type="checkbox" name="" id="shippingAddress"> -->
+                <input type="submit" hidden name="shippingAddress" id="shippingAddress">
+                <label for="shippingAddress" class="body-text3">Địa chỉ giống với địa chỉ thanh toán</label>
+            </div>
         </div>
     </form>
-    <form action="index.php?pg=confirm&billId=<?=$billId?>" method="post" class="checkout__form">
-    <div class="checkout__wrapper flex" style="flex-wrap: wrap-reverse">
-        <div class="checkout__form__wrapper">
-            <div class="payment__methods">
-                <h5 class="payment__methods__title">Chọn phương thức thanh toán</h5>
-                <lable for="cash" class="payment__method">
-                    <div class="flex" style="gap: 12px">
-                        <i class="fa-regular fa-circle-check option-btn"></i>
-                        <i class="fa-regular fa-circle option-btn"></i>
-                        <h5 class="method__name">Tiền mặt</h5>
+    <form action="index.php?pg=payment&billId=<?= $billId ?>" method="post" class="bill-info__form payment__form full row mt20">
+        <main class="bill-info__body payment-main__body r8 p20 flex-column flex-full g20">
+
+            <!-- payment method start -->
+
+            <div class="payment-methods r8 flex-column g12">
+                <label for="" class="form__label">
+                    Chọn phương thức thanh toán <span class="required">*</span>
+                </label>
+                <label for="cash" class="payment-method active r8 start">
+                    <div class="flex v-center g12">
+                        <i class="fa-regular fa-circle option__btn"></i>
+                        <i class="fa-regular fa-circle-check option__btn"></i>
+                        <span class="smb text">Tiền mặt</span>
                     </div>
-                </lable>
-                <lable for="creditCard" class="payment__method active">
-                    <div class="flex" style="gap: 12px">
-                        <i class="fa-regular fa-circle-check option-btn"></i>
-                        <i class="fa-regular fa-circle option-btn"></i>
-                        <h5 class="method__name">Thẻ tín dụng</h5>
+                </label>
+                <label for="credit-card" class="payment-method r8 start">
+                    <div class="flex v-center g12">
+                        <i class="fa-regular fa-circle option__btn"></i>
+                        <i class="fa-regular fa-circle-check option__btn"></i>
+                        <span class="smb text">Thẻ tín dụng</span>
                     </div>
-                    <form action="" class="payment-method-info__form" method="post">
+                    <div class="payment-method-info__form flex-column g12 p20">
                         <div class="form__group">
                             <input type="text" class="form__input" placeholder="Số thẻ">
-                            <p class="form__message"></p>
+                            <span class="form__message"></span>
                         </div>
                         <div class="form__group">
                             <input type="text" class="form__input" placeholder="Tên thẻ">
-                            <p class="form__message"></p>
+                            <span class="form__message"></span>
                         </div>
-                        <div class="flex" style="gap: 20px">
-                            <div class="form__group">
+                        <div class="row flex-between g12">
+                            <div class="form__group flex-full">
                                 <input type="text" class="form__input" placeholder="Ngày hết hạn">
-                                <p class="form__message"></p>
+                                <span class="form__message"></span>
                             </div>
-                            <div class="form__group">
+                            <div class="form__group flex-full">
                                 <input type="text" class="form__input" placeholder="CVV">
-                                <p class="form__message"></p>
+                                <span class="form__message"></span>
                             </div>
                         </div>
-                        <div class="form__group">
-                            <input type="checkbox" name="paymentInfo" id="paymentInfo">
-                            <label for="paymentInfo">Ghi nhớ thông tin thẻ</label>
-                        </div>
-                    </form>
-                </lable>
-                <lable for="paypal" class="payment__method">
-                    <div class="flex" style="gap: 12px">
-                        <i class="fa-regular fa-circle-check option-btn"></i>
-                        <i class="fa-regular fa-circle option-btn"></i>
-                        <h5 class="method__name">Paypal</h5>
                     </div>
-                    <form action="" class="payment-method-info__form" method="post">
+                </label>
+                <label for="momo" class="payment-method r8 start">
+                    <div class="flex v-center g12">
+                        <i class="fa-regular fa-circle option__btn"></i>
+                        <i class="fa-regular fa-circle-check option__btn"></i>
+                        <span class="smb text">Momo</span>
+                    </div>
+                    <div class="payment-method-info__form flex-column g12 p20">
                         <div class="form__group">
                             <input type="text" class="form__input" placeholder="Số thẻ">
-                            <p class="form__message"></p>
+                            <span class="form__message"></span>
                         </div>
                         <div class="form__group">
                             <input type="text" class="form__input" placeholder="Tên thẻ">
-                            <p class="form__message"></p>
+                            <span class="form__message"></span>
                         </div>
-                        <div class="flex" style="gap: 20px">
-                            <div class="form__group">
+                        <div class="row flex-between g12">
+                            <div class="form__group flex-full">
                                 <input type="text" class="form__input" placeholder="Ngày hết hạn">
-                                <p class="form__message"></p>
+                                <span class="form__message"></span>
                             </div>
-                            <div class="form__group">
+                            <div class="form__group flex-full">
                                 <input type="text" class="form__input" placeholder="CVV">
-                                <p class="form__message"></p>
+                                <span class="form__message"></span>
                             </div>
                         </div>
-                        <div class="form__group">
-                            <input type="checkbox" name="paymentInfo-paypal" id="paymentInfo-paypal">
-                            <label for="paymentInfo-paypal">Ghi nhớ thông tin thẻ</label>
-                        </div>
-                    </form>
-                </lable>
-                <lable for="momo" class="payment__method">
-                    <div class="flex" style="gap: 12px">
-                        <i class="fa-regular fa-circle-check option-btn"></i>
-                        <i class="fa-regular fa-circle option-btn"></i>
-                        <h5 class="method__name">Momo</h5>
                     </div>
-                    <form action="" class="payment-method-info__form" method="post">
+                </label>
+                <label for="paypal" class="payment-method r8 start">
+                    <div class="flex v-center g12">
+                        <i class="fa-regular fa-circle option__btn"></i>
+                        <i class="fa-regular fa-circle-check option__btn"></i>
+                        <span class="smb text">Paypal</span>
+                    </div>
+                    <div class="payment-method-info__form flex-column g12 p20">
                         <div class="form__group">
                             <input type="text" class="form__input" placeholder="Số thẻ">
-                            <p class="form__message"></p>
+                            <span class="form__message"></span>
                         </div>
                         <div class="form__group">
                             <input type="text" class="form__input" placeholder="Tên thẻ">
-                            <p class="form__message"></p>
+                            <span class="form__message"></span>
                         </div>
-                        <div class="flex" style="gap: 20px">
-                            <div class="form__group">
+                        <div class="row flex-between g12">
+                            <div class="form__group flex-full">
                                 <input type="text" class="form__input" placeholder="Ngày hết hạn">
-                                <p class="form__message"></p>
+                                <span class="form__message"></span>
                             </div>
-                            <div class="form__group">
+                            <div class="form__group flex-full">
                                 <input type="text" class="form__input" placeholder="CVV">
-                                <p class="form__message"></p>
+                                <span class="form__message"></span>
                             </div>
                         </div>
-                        <div class="form__group">
-                            <input type="checkbox" name="paymentInfo-momo" id="paymentInfo-momo">
-                            <label for="paymentInfo-momo">Ghi nhớ thông tin thẻ</label>
-                        </div>
-                    </form>
-                </lable>
-                <input type="hidden" name="paymentMethod" value="0" id="cash">
-                <input type="hidden" name="paymentMethod" value="1" id="creditCard">
-                <input type="hidden" name="paymentMethod" value="2" id="paypal">
-                <input type="hidden" name="paymentMethod" value="3" id="momo">
+                    </div>
+                </label>
+                <input type="radio" hidden id="credit-card" name="paymentMethod" value="1">
+                <input type="radio" hidden id="paypal" name="paymentMethod" value="2">
+                <input type="radio" hidden id="momo" name="paymentMethod" value="3">
+                <input type="radio" hidden id="cash" checked name="paymentMethod" value="4">
+            </div> 
+            
+            <!-- payment method end -->
+
+            <!-- country start -->
+            <div class="form__group">
+                <label for="" class="form__label">Chọn quốc gia</label>
+                <select name="country" id="country" class="form__input">
+                    <option value="1" selected>VietNam</option>
+                    <option value="2">USA</option>
+                    <option value="3">England</option>
+                </select>
+                <span class="form__message"></span>
             </div>
-                <hr style="margin-block: 30px">
-                <h4 class="cart__form__title" style="margin-bottom: 18px;">Địa chỉ giao dịch</h4>
-                <div class="form__group">
-                    <label for="" class="cart__form__label">Địa chỉ<span class="required">*</span></label>
-                    <input type="text" class="form__input" value="<?= $addressView?>">
-                    <p class="form__message"></p>
-                </div>
-                <div class="form__group">
-                    <label for="" class="cart__form__label">Email<span class="required">*</span></label>
-                    <input type="text" class="form__input" value="<?= $emailView ?>">
-                    <p class="form__message"></p>
-                </div>
-                <div class="form__group">
-                    <label for="" class="cart__form__label">Số điện thoại<span class="required">*</span></label>
-                    <input type="text" class="form__input" value="<?= $telView ?>">
-                    <p class="form__message"></p>
-                </div>
-                <div class="form__group">
-                    <label for="" class="cart__form__label">Nhập tên đường và số nhà</label>
-                    <input type="text" class="form__input" name="road-home">
-                    <p class="form__message"></p>
-                </div>
-                <div class="flex" style="flex-wrap: wrap">
-                    <div class="form__group">
-                        <label for="" class="cart__form__label">Chọn thành phố / tỉnh<span class="required">*</span></label>
-                        <select name="city" id="" class="form__select">
-                            <option value="hcm" selected>TP.HCM</option>
-                        </select>
-                    </div>
-                    <div class="form__group">
-                        <label for="" class="cart__form__label">Chọn quận / huyện<span class="required">*</span></label>
-                        <select name="ward" id="" class="form__select">
-                            <option value="tanbinh" selected>Tân Bình</option>
-                        </select>
-                    </div>
-                </div>
-                <h4 class="cart__form__title" style="margin-bottom: 18px;">Lưu thông tin</h4>
-                <div class="form__group">
-                    <input type="checkbox" name="saveInfo" id="saveInfo">
-                    <label for="saveInfo">Lưu lại thông tin giao hàng cho những đơn hàng tiếp theo</label>
-                </div>
-            </form>
-        </div>
-        <div class="checkout__summary">
-            <div class="summary__product__wrapper">
+            <!-- country end -->
+
+            <hr class="break-line">
+
+            <!-- full name start -->
+            <div class="form__group">
+                <label for="" class="form__label">
+                    Tên người nhận <span class="required">*</span>
+                </label>
+                <input type="text" name="fullname" id="fullname" class="form__input" value="">
+                <span class="form__message"></span>
+            </div>
+            <!-- full name end -->
+
+            <!-- address start -->
+            <div class="form__group">
+                <label for="" class="form__label">
+                    Địa chỉ <span class="required">*</span>
+                </label>
+                <input type="text" name="address" id="address" class="form__input" value="<?= $addressView ?>">
+                <span class="form__message"></span>
+            </div>
+            <!-- address end -->
+
+            <!-- email start -->
+            <div class="form__group">
+                <label for="" class="form__label">Email <span class="required">*</span></label>
+                <input type="text" class="form__input" id="email" name="email" value="<?= $emailView ?>">
+                <span class="form__message"></span>
+            </div>
+            <!-- email end -->
+
+            <!-- telephone start -->
+            <div class="form__group">
+                <label for="" class="form__label">Số điện thoại <span class="required">*</span></label>
+                <input type="text" class="form__input" id="tel" name="tel" value="<?= $telView ?>">
+                <span class="form__message"></span>
+            </div>
+            <!-- telephone end -->
+
+            <div class="flex v-center start g6">
+                <input type="checkbox" name="saveBillInfo" id="saveBillInfo">
+                <label for="saveBillInfo" class="body-text3">Lưu lại thông tin giao hàng cho những đơn hàng tiếp theo</label>
+            </div>
+        </main>
+        <div class="cart-summary flex-full">
+            <div class="cart-summary__inner flex-column g20 p20 r8 flex-full">
+                
                 <!-- single product start -->
-                <?= $product_html ?>
+                <?= renderSummaryProduct($cart) ?>
                 <!-- single product end -->
-            </div>
-            <div class="summary__coupon">
-                <h4 class="coupon__title">Mã giảm giá</h4>
-                <div class="form__group">
-                    <input class="form__input" type="text" placeholder="Nhập mã giảm giá ">
-                    <button class="form__btn">Áp dụng</button>
+
+                <div class="toggle-detail underline">Xem chi tiết</div>
+                <div class="cart-summary__detail flex-column g20">
+                    <div class="product__voucher form__group">
+                        <label for="" class="form__label">Nhập mã giảm giá để nhận ưu đãi</label>
+                        <div class="flex-between row g6 mt12">
+                            <input type="text" class="form__input flex-full" placeholder="Mã giảm giá">
+                            <span class="form__message"></span>
+                            <button class="btn outline__btn apply__btn">Áp dụng</button>
+                        </div>
+                    </div>
+                    <div class="flex-between">
+                        <span class="smb text">Tiền sản phẩm</span>
+                        <span class="smb text product__price">$<?= $total ?></span>
+                    </div>
+                    <div class="flex-between">
+                        <span class="smb text">Giảm giá</span>
+                        <span class="smb text sale">-$0</span>
+                    </div>
+                    <div class="flex-between">
+                        <span class="smb text">Phí vận chuyển</span>
+                        <span class="smb text shipping-fee">$<?= $shippingFee ?></span>
+                    </div>
                 </div>
-                <!-- <p class="call-to-action">Bạn là khác hàng mới ? <a class="hightlight__text">Đăng ký</a> ngay để nhận
-                    giá
-                    tốt hơn</p> -->
-            </div>
-            <span class="toggle__detail">See more detail</span>
-            <div class="summary__detail">
-                <div class="detail__item">
-                    <h5 class="detail__title">Tiền sản phẩm</h5>
-                    <p class="detail__cost" style="color: #050728; font-weight: 800;">$<?= $total?></p>
+                <hr class="break-line">
+                <div class="flex-between">
+                    <span class="smb body-text1">Tổng tiền</span>
+                    <span class="smb body-text1 total">$<?= $total + $shippingFee ?></span>
                 </div>
-                <div class="detail__item">
-                    <h5 class="detail__title">Giảm giá</h5>
-                    <p class="detail__cost">$0</p>
-                </div>
-                <div class="detail__item">
-                    <h5 class="detail__title">Phí vận chuyển</h5>
-                    <p class="detail__cost">$<?= $shippingFee?></p>
-                </div>
+                <!-- <a href="index.php?pg=confirm&billId=<?= $billId ?>" class="btn primary__btn">Đi đến thanh toán</a> -->
+                <span class="form__message" id="error-check"></span>
+                <button class="form__btn btn primary__btn" id="submit" type="submit" name="submit">Đi đến thanh toán</button>
             </div>
-            <hr style="margin-block: 12px;">
-            <div class="checkout__summary__total detail__item">
-                <h4 class="detail__title" style="font-size: 18px;">Tổng tiền</h4>
-                <p class="detail__cost" style="color: #050728; font-weight: 800; font-size: 18px">$<?= $total + $shippingFee ?></p>
-            </div>
-            <button type="submit" name="paymentDone" class="form__btn">Tiếp tục</butt>
         </div>
-    </div>
-</form>
+    </form>
 </section>
+
+<script>
+    Validator({
+        formSelector: '.payment__form',
+        formGroupSelector: '.form__group',
+        formMessage: '.form__message',
+        rules: [
+            Validator.isRequired('#fullname') , 
+            Validator.isRequired('#email') , 
+            Validator.isEmail('#email') , 
+            Validator.isRequired('#address') , 
+            Validator.isRequired('#tel'),
+            Validator.isPhone('#tel')
+        ]
+    })
+</script>

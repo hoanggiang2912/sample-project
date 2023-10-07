@@ -63,6 +63,8 @@
     @import 'pages/adminCategory';
     @import 'pages/addNewCategory';
     @import 'pages/updateCategory';
+    @import 'pages/404';
+    @import 'pages/billDetail';
 // import partials end
 
 // || Responsive 
@@ -179,6 +181,9 @@
 .g12 {
     gap: 1.2rem;
 }
+.g16 {
+    gap: 1.6rem;
+}
 .g2 {
     gap: .2rem;
 }
@@ -259,6 +264,7 @@
 .text {
     color: $text-color;
     line-height: 2.6rem;
+    font-size: clamp(1.3rem, 1.086rem + 0.571vw, 1.6rem);
 }
 .body-text1 {
     font-size: clamp(1.6rem, 1.314rem + 0.762vw, 2rem);
@@ -289,9 +295,9 @@
     color: $text-color !important;
 }
 .title {
-    color: $primary-color;
+    color: $text-color;
     font-size: $desktop-heading4;
-    font-weight: $fw-b;
+    font-weight: $fw-smb;
     letter-spacing: 0.56px;
     text-align: center;
     line-height: 3rem;
@@ -347,6 +353,27 @@
     display: flex;
     flex-wrap: wrap;
 }
+.auto-grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(min(20em, 100%), 1fr));
+}
+.grid-3 {
+    display: grid;
+    @include grid-layout(3 , 22em);
+}
+@media screen and (max-width: 700px) {
+    .auto-grid {
+        grid-template-columns: repeat(2 , 1fr);
+    }
+}
+@media screen and (max-width: 374.98px) {
+    .auto-grid {
+        grid-template-columns: 1fr; 
+    }
+}
+
+
 .h-center {
     display: flex;
     justify-content: center;
@@ -410,6 +437,9 @@
 .tac {
     text-align: center;
 }
+.ma {
+    margin: auto;
+}
 .tal {
     text-align: left;
 }
@@ -445,6 +475,9 @@
 .ttu {
     text-transform: uppercase !important;
 }
+.ttc {
+    text-transform: capitalize;
+}
 
 // common button styles
 .btn {
@@ -473,6 +506,11 @@
 .outline__btn {
     border: 2px solid $outline-btn-border-color;
     color: $outline-btn-text-color;
+    transition: $boucing-trans;
+    &:hover {
+        background: $text-color !important;
+        color: $common-color !important;
+    }
 }
 .banner__btn {
     padding: 22px 64px;
@@ -537,7 +575,7 @@ form {
         background: $input-bg-color;
         border: 1px solid $input-border-color;
         padding: 20px;
-        color: $input-text-color;
+        color: $text-color !important;
         border-radius: 5px;
         display: block;
         transition: $boucing-trans;
@@ -560,6 +598,8 @@ form {
     }
     .form__btn {
         font-weight: $fw-smb;
+        outline: none;
+        border: none;
     }
 }
 .invalid {
@@ -605,3 +645,17 @@ form {
     position: absolute;
 }
 // position classes end
+// custom scroll bar
+::-webkit-scrollbar {
+    width: 1rem;
+    // scrollbar-gutter: stable;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    border-radius: 10rem;
+}

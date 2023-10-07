@@ -16,6 +16,7 @@
             .user__nav {
                 position: absolute;
                 width: max-content;
+                min-width: 20rem;
                 box-shadow: $box-shadow;
                 top: 8rem;
                 right: 0;
@@ -35,6 +36,7 @@
                             color: $text-color;
                             text-transform: none;
                             line-height: 3.2rem;
+                            padding: 0 !important;
                         }
                         &:hover {
                             background: $common-border-color;
@@ -71,10 +73,25 @@
                         padding: 12px 20px;
                     }
                     .search__btn {
-                        padding-inline: 10px;
+                        transform: translateX(-10px);
                         transition: $common-trans;
-                        &:hover {
-                            background: rgba(0, 0, 0, 0.20);
+                        cursor: pointer;
+                    }
+
+                    // || search results styling
+                    #search-result {
+                        top: 45px;
+                        right: 0;
+                        left: 0;
+                        // search product styling
+                        .search__product {
+                            .product__banner {
+                                min-width: 5rem;
+                                min-height: 7rem;
+                            }
+                            .product__name {
+                                line-height: unset;
+                            }
                         }
                     }
                 }
@@ -151,6 +168,7 @@
             }
         }
         .open__btn {
+            color: $text-color !important;
             display: none;
             font-size: 1.6rem;
         }
@@ -170,9 +188,6 @@
                 color: $text-color !important;
             }
         }
-    }
-    .open__btn {
-        color: $common-color !important;
     }
 }
 .header.scrolled {

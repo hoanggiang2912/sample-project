@@ -1,4 +1,3 @@
 </body>
-<script src="../views/layout/assets/js/main.js"></script>
-
 </html>
+<script src="../views/assets/resources/js/main.js"></script>

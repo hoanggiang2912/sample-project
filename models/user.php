@@ -11,6 +11,10 @@
         $mySQL = "SELECT * FROM user WHERE id_user = '$userId'";
         return get_one($mySQL);
     }
+    function getUserByUsername ($username) {
+        $mySQL = "SELECT * FROM user WHERE username = '$username'";
+        return get_one($mySQL);
+    }
     function validateUserData($name, $password, $email) {
         $errors = [];
 
@@ -35,8 +39,8 @@
 
         return $errors;
     }
-    function addUser ($name , $email , $password) {
-        $mySQL = "INSERT INTO user (username , email , password) VALUES ('$name', '$email', '$password')";
+    function addUser ($username , $email , $password) {
+        $mySQL = "INSERT INTO user (username , email , password) VALUES ('$username', '$email', '$password')";
         insert($mySQL);
     }
     function updateUserGeneral ($username , $email , $userId) {

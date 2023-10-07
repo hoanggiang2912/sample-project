@@ -1,5 +1,4 @@
 .admin__header {
-    // gap: 3rem !important;
     .header__icon {
         background: $common-color;
         box-shadow: $box-shadow;
@@ -15,6 +14,7 @@
             border-radius: 50px;
             .form__input {
                 padding-block: 1.4rem;
+                padding-inline: 2rem;
                 background: none;
                 justify-content: space-between;
                 align-items: center;
@@ -37,6 +37,7 @@
         opacity: 0;
         visibility: hidden;
         transition: $boucing-trans;
+        z-index: 200;
         .subnav__item {
             transition: $boucing-trans;
             transform: translateY(1rem);
